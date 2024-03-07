@@ -21,6 +21,7 @@ class Post(models.Model):
     Downvotes = models.IntegerField()
     CountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='posts')
     Tags = models.ManyToManyField('Tag', related_name='posts')
+    is_featured = models.BooleanField(default=False)
 
 class Tag(models.Model):
     TagID = models.IntegerField()

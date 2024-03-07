@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from rendezvous_app.models import Country, Post
+
 # Define the home view
 def home(request):
     # Fetch featured and recent posts from the database
