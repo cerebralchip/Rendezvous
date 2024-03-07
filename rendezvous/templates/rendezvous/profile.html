@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - Rendezvous</title>
+    <!-- Include your stylesheet links here -->
+</head>
+<body>
+    <header>
+        <!-- Navigation bar goes here -->
+    </header>
+
+    <main>
+        <section id="user-info">
+            <h1>Hi, {{ user.username }}</h1>
+            <!-- User information goes here -->
+            <p>Name: {{ user.get_full_name }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Phone: {{ user.profile.phone }} <!-- Assuming 'phone' is a field in a Profile model related to User -->
+            <p>Country: {{ user.profile.country.country_name }} <!-- Assuming a one-to-one relationship to a Profile model which in turn is related to a Country model -->
+        </section>
+        
+
+        <section id="countries-visited">
+            <h2>Countries Visited</h2>
+            <!-- List of countries visited -->
+            <!-- This could be dynamically generated based on user's data -->
+        </section>
+
+        <section id="latest-posts">
+            <h2>Latest Posts</h2>
+            <!-- Latest posts list -->
+        </section>
+
+        <section id="activity">
+            <h2>Activity</h2>
+            <!-- User activity stream -->
+        </section>
+    </main>
+
+    <footer>
+        <p>Internet Technology, Team 11, 2024. All rights reserved.</p>
+    </footer>
+
+    <!-- Include your JavaScript links here -->
+</body>
+</html>

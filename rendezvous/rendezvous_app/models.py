@@ -4,6 +4,7 @@ class Country(models.Model):
     CountryID = models.IntegerField()
     CountryName = models.CharField(max_length=100)
 
+# this needs to be updated to use the built-in User model
 class User(models.Model):
     UserID = models.IntegerField()
     Username = models.CharField(max_length=30)
@@ -22,6 +23,7 @@ class Post(models.Model):
     CountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='posts')
     Tags = models.ManyToManyField('Tag', related_name='posts')
     is_featured = models.BooleanField(default=False)
+    published_date = models.DateTimeField(auto_now_add=True)
 
 class Tag(models.Model):
     TagID = models.IntegerField()
