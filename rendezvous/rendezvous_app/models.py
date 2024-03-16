@@ -7,6 +7,9 @@ class Country(models.Model):
     def __str__(self):
         return self.CountryName
 
+    class Meta:
+        verbose_name_plural = 'countries'
+
 # this needs to be updated to use the built-in User model
 class User(models.Model):
     UserID = models.IntegerField()
