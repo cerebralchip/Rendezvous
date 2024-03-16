@@ -4,6 +4,9 @@ class Country(models.Model):
     CountryID = models.IntegerField()
     CountryName = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.CountryName
+
 # this needs to be updated to use the built-in User model
 class User(models.Model):
     UserID = models.IntegerField()
@@ -13,6 +16,9 @@ class User(models.Model):
     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
     Picture = models.ImageField()
     Bio = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.Username
 
 class Post(models.Model):
     PostID = models.IntegerField()
@@ -25,9 +31,15 @@ class Post(models.Model):
     is_featured = models.BooleanField(default=False)
     published_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Post ID: {self.PostID}"
+
 class Tag(models.Model):
     TagID = models.IntegerField()
     TagName = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.TagName
 
 class Comment(models.Model):
     CommentID = models.IntegerField()
@@ -36,3 +48,6 @@ class Comment(models.Model):
     Upvotes = models.IntegerField()
     Downvotes = models.IntegerField()
     PostID = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+
+    def __str__(self):
+        return f"Comment ID: {self.CommentID}"
