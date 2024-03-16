@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.Text }}</title>
+    <!-- Link to CSS files -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'discover' %}">Discover</a></li>
+                <li><a href="{% url 'resources' %}">Travel Resources</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <!-- Include other navigation links -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h1>{{ post.Text }}</h1>
+            <p>Country: {{ post.CountryID.CountryName }}</p>
+            <p>Published: {{ post.published_date }}</p>
+            <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
+            <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+            {% if post.Picture %}
+                <img src="{{ post.Picture.url }}" alt="{{ post.Text }}">
+            {% endif %}
+
+            <div class="post-content">
+                <!-- Display the post content here -->
+                <p>{{ post.Text }}</p>
+            </div>
+
+            <section class="comments">
+                <h2>Comments</h2>
+                {% if post.comments.all %}
+                    <ul>
+                        {% for comment in post.comments.all %}
+                            <li>
+                                <p>{{ comment.Content }}</p>
+                                <p>By: {{ comment.UserID.Username }}</p>
+                                <p>Upvotes: {{ comment.Upvotes }} | Downvotes: {{ comment.Downvotes }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No comments yet.</p>
+                {% endif %}
+
+                <!-- Add a form to submit new comments -->
+                <form method="post" action="{% url 'comment' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <textarea name="content" placeholder="Write a comment"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>Internet Technology, Team 11, 2024. All rights reserved.</p>
+    </footer>
+
+    <!-- Link to JavaScript files -->
+</body>
+</html>
