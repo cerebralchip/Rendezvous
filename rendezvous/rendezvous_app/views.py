@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from rendezvous_app.models import Country, Post
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 
 # Define the home view
 def home(request):
@@ -81,4 +83,6 @@ def comment(request):
     # Add your logic here
     return HttpResponse("This is where comments are handled.")
 
-# You would also have to include imports for models if you interact with the database
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'rendezvous/post_detail.html', {'post': post})

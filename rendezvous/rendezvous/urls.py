@@ -35,4 +35,5 @@ urlpatterns = [
     path("search_results/", views.search_results, name="search_results"),
     path("comment/", views.comment, name="comment"),
     path("admin/", admin.site.urls),
+    path("post/<int:post_id>/", views.post_detail, name="post_detail"),
 ]

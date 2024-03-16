@@ -20,19 +20,56 @@
     
     <main>
         <section id="featured">
-            <!-- Featured content goes here -->
+            <h2>Featured Posts</h2>
+            {% if featured_posts %}
+                <ul>
+                    {% for post in featured_posts %}
+                        <li>
+                            <h3><a href="{% url 'post_detail' post.id %}">{{ post.Text }}</a></h3>
+                            <p>Country: {{ post.CountryID.CountryName }}</p>
+                            <p>Published: {{ post.published_date }}</p>
+                            <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
+                            <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No featured posts available.</p>
+            {% endif %}
         </section>
-
+    
         <section id="recent-posts">
             <h2>Recent Posts</h2>
-            <!-- Loop through recent posts and display -->
+            {% if recent_posts %}
+                <ul>
+                    {% for post in recent_posts %}
+                        <li>
+                            <h3><a href="{% url 'post_detail' post.id %}">{{ post.Text }}</a></h3>
+                            <p>Country: {{ post.CountryID.CountryName }}</p>
+                            <p>Published: {{ post.published_date }}</p>
+                            <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
+                            <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recent posts available.</p>
+            {% endif %}
         </section>
-
+    
         <section id="countries">
             <h2>Countries</h2>
-            <!-- Interactive map or list of countries -->
+            {% if countries %}
+                <ul>
+                    {% for country in countries %}
+                        <li>{{ country.CountryName }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No countries available.</p>
+            {% endif %}
         </section>
-
+    
         <section id="explore">
             <h2>Explore</h2>
             <!-- Categories like Eco-Travel, Budget, etc. -->

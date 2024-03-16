@@ -1,10 +1,10 @@
 import os
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project_name.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rendezvous.settings')
 django.setup()
 
-from your_app_name.models import Country, User, Post, Tag, Comment
+from rendezvous_app.models import Country, User, Post, Tag, Comment
 
 def populate():
     # Create countries
