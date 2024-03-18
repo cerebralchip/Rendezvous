@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile - Rendezvous</title>
-    <!-- Include your stylesheet links here -->
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'discover' %}">Discover</a></li>
-                <li><a href="{% url 'resources' %}">Travel Resources</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'create_post' %}">Create Post</a></li>
-                <!-- Include other navigation links -->
-                            <!-- ... -->
-                {% if user.is_authenticated %}
-                    <li>Welcome, {{ user.username }}!</li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-
-    <main>
+{% extends "base.html" %}
         <section id="user-info">
             <h1>Hi, {{ user.username }}</h1>
             <!-- User information goes here -->
@@ -53,12 +24,4 @@
             <h2>Activity</h2>
             <!-- User activity stream -->
         </section>
-    </main>
-
-    <footer>
-        <p>Internet Technology, Team 11, 2024. All rights reserved.</p>
-    </footer>
-
-    <!-- Include your JavaScript links here -->
-</body>
-</html>
+{% endblock %}

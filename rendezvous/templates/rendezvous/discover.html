@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Discover - Rendezvous</title>
-    <!-- Include your stylesheets here -->
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'discover' %}">Discover</a></li>
-                <li><a href="{% url 'resources' %}">Travel Resources</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <!-- Include other navigation links -->
-            </ul>
-        </nav>
-    </header>
-
-    <main>
+{% extends "base.html" %}
+    {% block content %}
         <section id="feed">
             <h1>Feed</h1>
             <!-- Loop through posts -->
@@ -46,20 +27,13 @@
         <section id="social-media">
             <!-- Social media links -->
         </section>
-    </main>
-
+    {% endblock %}
+    
+    {% block extra_html %}
     <aside>
         <section id="popular">
             <h2>Popular</h2>
             <!-- Popular posts go here -->
         </section>
     </aside>
-
-    <footer>
-        <p>Internet Technology, Team 11, 2024. All rights reserved.</p>
-    </footer>
-    
-    <!-- Include your scripts here -->
-</body>
-</html>
-
+    {% endblock %}

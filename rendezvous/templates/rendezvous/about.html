@@ -1,49 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About - Rendezvous</title>
-    <!-- Include your stylesheets here -->
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'discover' %}">Discover</a></li>
-                <li><a href="{% url 'resources' %}">Travel Resources</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <!-- Include other navigation links -->
-            </ul>
-        </nav>
-    </header>
+{% extends "base.html" %} 
+{% block content %}
+<section id="about-content">
+    <h1>About</h1>
+    <p>
+        <!-- About content goes here -->
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+    </p>
+    <p>
+        <!-- Additional paragraphs of about content -->
+        Aenean dignissim nibh et lectus feugiat, maximus sodales nunc rhoncus...
+    </p>
+</section>
 
-    <main>
-        <section id="about-content">
-            <h1>About</h1>
-            <p>
-                <!-- About content goes here -->
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-            </p>
-            <p>
-                <!-- Additional paragraphs of about content -->
-                Aenean dignissim nibh et lectus feugiat, maximus sodales nunc rhoncus...
-            </p>
-        </section>
-
-        <section id="contact-info">
-            <h2>Contact</h2>
-            <p>Contact us at:</p>
-            <p>This is a representation for Contact info:</p>
-            <p><strong>Email:</strong> contact@rendezvous.com</p>
-            <p><strong>Phone:</strong> 555 333 222 111</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>Internet Technology, Team 11, 2024. All rights reserved.</p>
-    </footer>
-    
-    <!-- Include your scripts here -->
-</body>
-</html>
+<section id="contact-info">
+    <h2>Contact</h2>
+    <p>Contact us at:</p>
+    <p>This is a representation for Contact info:</p>
+    <p><strong>Email:</strong> contact@rendezvous.com</p>
+    <p><strong>Phone:</strong> 555 333 222 111</p>
+</section>
+{% endblock %}
