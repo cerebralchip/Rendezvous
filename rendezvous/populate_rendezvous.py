@@ -4,7 +4,8 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rendezvous.settings')
 django.setup()
 
-from rendezvous_app.models import Country, User, Post, Tag, Comment
+from rendezvous_app.models import Country, Profile, Post, Tag, Comment
+from django.contrib.auth.models import User
 
 def populate():
     # Create countries
@@ -19,14 +20,19 @@ def populate():
         Country.objects.get_or_create(**country_data)
 
     # Create users
-    users = [
-        {'UserID': 1, 'Username': 'john_doe', 'Password': 'password123', 'BornInCountryID_id': 1, 'LivingInCountryID_id': 2, 'Bio': 'Travel enthusiast'},
-        {'UserID': 2, 'Username': 'jane_smith', 'Password': 'password456', 'BornInCountryID_id': 2, 'LivingInCountryID_id': 3, 'Bio': 'Adventurer'},
+    profiles = [
+        {'username': 'user1', 'BornInCountryID_id': 1, 'LivingInCountryID_id': 1, 'Picture': 'profile_pics/user1.jpg', 'Bio': 'I love to travel!'},
+        {'username': 'user2', 'BornInCountryID_id': 2, 'LivingInCountryID_id': 2, 'Picture': 'profile_pics/user2.jpg', 'Bio': 'I am a foodie!'},
         # Add more users as needed
     ]
 
-    for user_data in users:
-        User.objects.get_or_create(**user_data)
+    for profile_data in profiles:
+        user, created = User.objects.get_or_create(username=profile_data['username'])
+        if created:
+            user.set_password('12345')  # Set a default password
+            user.save()
+        profile_data.pop('username')  # Remove the username field
+        profile, created = Profile.objects.get_or_create(user=user, **profile_data)
 
     # Create tags
     tags = [

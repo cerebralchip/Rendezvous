@@ -11,7 +11,6 @@ class Country(models.Model):
     class Meta:
         verbose_name_plural = 'countries'
 
-# this needs to be updated to use the built-in User model
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
@@ -26,6 +25,8 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
+    # prost id, primary key
+    PostID = models.IntegerField()
     Picture = models.ImageField()
     Text = models.CharField(max_length=1000)
     Upvotes = models.IntegerField(default=0)  # Provide a default value
