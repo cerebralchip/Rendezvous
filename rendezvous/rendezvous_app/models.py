@@ -12,19 +12,7 @@ class Country(models.Model):
         verbose_name_plural = 'countries'
 
 # this needs to be updated to use the built-in User model
-# class User(models.Model):
-#     UserID = models.IntegerField()
-#     Username = models.CharField(max_length=30)
-#     Password = models.CharField(max_length=30)
-#     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
-#     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
-#     Picture = models.ImageField()
-#     Bio = models.CharField(max_length=500)
-
-#     def __str__(self):
-#         return self.Username]
-
-class User(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
@@ -32,7 +20,8 @@ class User(models.Model):
     Bio = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.user.username
+        return self.Username
+
 
 
 
