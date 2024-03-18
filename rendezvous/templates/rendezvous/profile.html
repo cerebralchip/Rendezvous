@@ -7,7 +7,24 @@
 </head>
 <body>
     <header>
-        <!-- Navigation bar goes here -->
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'discover' %}">Discover</a></li>
+                <li><a href="{% url 'resources' %}">Travel Resources</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'create_post' %}">Create Post</a></li>
+                <!-- Include other navigation links -->
+                            <!-- ... -->
+                {% if user.is_authenticated %}
+                    <li>Welcome, {{ user.username }}!</li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 
     <main>

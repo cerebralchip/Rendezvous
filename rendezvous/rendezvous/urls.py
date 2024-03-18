@@ -20,9 +20,12 @@ from django.urls import include
 
 from rendezvous_app import views
 
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+
+
 
 
 urlpatterns = [
@@ -30,7 +33,9 @@ urlpatterns = [
     path("map/", views.map, name="map"),
     path("discover/", views.discover, name="discover"),
     path("resources/", views.resources, name="resources"),
-    path("profile/", views.profile, name="profile"),
+
+    path('accounts/profile/', views.profile, name='profile'),
+
     path("settings/", views.settings, name="settings"),
     path("about/", views.about, name="about"),
 
