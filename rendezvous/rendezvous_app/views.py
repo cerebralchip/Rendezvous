@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.contrib.auth.forms import UserCreationForm
 from rendezvous_app.models import Country, Post
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 
 from .forms import PostForm
 
@@ -25,6 +28,7 @@ def home(request):
     # Render and return the response, passing in the context data
     return render(request, 'rendezvous/home.html', context)
 
+@login_required
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -74,10 +78,21 @@ def login(request):
     # Add your logic here
     return render(request, 'rendezvous/login.html')
 
+# Define the logout view
+def logout_view(request):
+    logout(request)
+    return redirect('home') 
+
 # Define the register view
 def register(request):
-    # Add your logic here
-    return render(request, 'rendezvous/register.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'rendezvous/register.html', {'form': form})
 
 # Define the country view
 def country(request):
