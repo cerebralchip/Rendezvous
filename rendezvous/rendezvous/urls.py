@@ -36,4 +36,5 @@ urlpatterns = [
     path("comment/", views.comment, name="comment"),
     path("admin/", admin.site.urls),
     path("post/<int:post_id>/", views.post_detail, name="post_detail"),
+    path('create_post/', views.create_post, name='create_post'),
 ]

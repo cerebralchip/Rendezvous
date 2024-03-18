@@ -8,7 +8,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('UserID', 'Username', 'BornInCountryID', 'LivingInCountryID')
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('PostID', 'Text', 'CountryID', 'is_featured', 'published_date')
+    list_display = ('id', 'Text', 'CountryID', 'published_date')
     list_filter = ('is_featured', 'published_date', 'CountryID')
     search_fields = ('Text',)
 

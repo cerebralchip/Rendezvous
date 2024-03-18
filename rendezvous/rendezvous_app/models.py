@@ -24,11 +24,10 @@ class User(models.Model):
         return self.Username
 
 class Post(models.Model):
-    PostID = models.IntegerField()
     Picture = models.ImageField()
     Text = models.CharField(max_length=1000)
-    Upvotes = models.IntegerField()
-    Downvotes = models.IntegerField()
+    Upvotes = models.IntegerField(default=0)  # Provide a default value
+    Downvotes = models.IntegerField(default=0)  # Provide a default value
     CountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='posts')
     Tags = models.ManyToManyField('Tag', related_name='posts')
     is_featured = models.BooleanField(default=False)

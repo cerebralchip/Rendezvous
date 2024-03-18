@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from rendezvous_app.models import Country, Post
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+
+from .forms import PostForm
 
 # Define the home view
 def home(request):
@@ -22,6 +24,20 @@ def home(request):
     
     # Render and return the response, passing in the context data
     return render(request, 'rendezvous/home.html', context)
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect('post_detail', post_id=post.id)
+    else:
+        form = PostForm()
+    return render(request, 'rendezvous/create_post.html', {'form': form})
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'rendezvous/post_detail.html', {'post': post})
 
 # Define the map view
 def map(request):
@@ -83,6 +99,3 @@ def comment(request):
     # Add your logic here
     return HttpResponse("This is where comments are handled.")
 
-def post_detail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    return render(request, 'rendezvous/post_detail.html', {'post': post})
