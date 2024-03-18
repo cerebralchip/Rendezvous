@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Country(models.Model):
     CountryID = models.IntegerField()
@@ -11,17 +12,29 @@ class Country(models.Model):
         verbose_name_plural = 'countries'
 
 # this needs to be updated to use the built-in User model
+# class User(models.Model):
+#     UserID = models.IntegerField()
+#     Username = models.CharField(max_length=30)
+#     Password = models.CharField(max_length=30)
+#     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
+#     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
+#     Picture = models.ImageField()
+#     Bio = models.CharField(max_length=500)
+
+#     def __str__(self):
+#         return self.Username]
+
 class User(models.Model):
-    UserID = models.IntegerField()
-    Username = models.CharField(max_length=30)
-    Password = models.CharField(max_length=30)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
     Picture = models.ImageField()
     Bio = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.Username
+        return self.user.username
+
+
 
 class Post(models.Model):
     Picture = models.ImageField()

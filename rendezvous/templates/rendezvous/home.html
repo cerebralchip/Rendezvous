@@ -1,94 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rendezvous Home</title>
-    <!-- Link to CSS files -->
-</head>
-<body>
-    <header>
-        <nav>
+{% extends "base.html" %}
+
+{% block title %}
+    Rendezvous
+{% endblock %}
+
+ 
+{% block content %}
+
+    <section id="featured">
+        <h2>Featured Posts</h2>
+        {% if featured_posts %}
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'discover' %}">Discover</a></li>
-                <li><a href="{% url 'resources' %}">Travel Resources</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'create_post' %}">Create Post</a></li>
-                <!-- Include other navigation links -->
-                            <!-- ... -->
-                {% if user.is_authenticated %}
-                    <li>Welcome, {{ user.username }}!</li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %}
+                {% for post in featured_posts %}
+                    <li>
+                        <h3><a href="{% url 'post_detail' post.id %}">{{ post.Text }}</a></h3>
+                        <p>Country: {{ post.CountryID.CountryName }}</p>
+                        <p>Published: {{ post.published_date }}</p>
+                        <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
+                        <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                    </li>
+                {% endfor %}
             </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="featured">
-            <h2>Featured Posts</h2>
-            {% if featured_posts %}
-                <ul>
-                    {% for post in featured_posts %}
-                        <li>
-                            <h3><a href="{% url 'post_detail' post.id %}">{{ post.Text }}</a></h3>
-                            <p>Country: {{ post.CountryID.CountryName }}</p>
-                            <p>Published: {{ post.published_date }}</p>
-                            <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
-                            <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No featured posts available.</p>
-            {% endif %}
-        </section>
-    
-        <section id="recent-posts">
-            <h2>Recent Posts</h2>
-            {% if recent_posts %}
-                <ul>
-                    {% for post in recent_posts %}
-                        <li>
-                            <h3><a href="{% url 'post_detail' post.id %}">{{ post.Text }}</a></h3>
-                            <p>Country: {{ post.CountryID.CountryName }}</p>
-                            <p>Published: {{ post.published_date }}</p>
-                            <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
-                            <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No recent posts available.</p>
-            {% endif %}
-        </section>
-    
-        <section id="countries">
-            <h2>Countries</h2>
-            {% if countries %}
-                <ul>
-                    {% for country in countries %}
-                        <li>{{ country.CountryName }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No countries available.</p>
-            {% endif %}
-        </section>
-    
-        <section id="explore">
-            <h2>Explore</h2>
-            <!-- Categories like Eco-Travel, Budget, etc. -->
-        </section>
-    </main>
+        {% else %}
+            <p>No featured posts available.</p>
+        {% endif %}
+    </section>
 
-    <footer>
-        <p>Internet Technology, Team 11, 2024. All rights reserved.</p>
-    </footer>
+    <section id="recent-posts">
+        <h2>Recent Posts</h2>
+        {% if recent_posts %}
+            <ul>
+                {% for post in recent_posts %}
+                    <li>
+                        <h3><a href="{% url 'post_detail' post.id %}">{{ post.Text }}</a></h3>
+                        <p>Country: {{ post.CountryID.CountryName }}</p>
+                        <p>Published: {{ post.published_date }}</p>
+                        <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
+                        <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recent posts available.</p>
+        {% endif %}
+    </section>
 
-    <!-- Link to JavaScript files -->
-</body>
-</html>
+    <section id="countries">
+        <h2>Countries</h2>
+        {% if countries %}
+            <ul>
+                {% for country in countries %}
+                    <li>{{ country.CountryName }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No countries available.</p>
+        {% endif %}
+    </section>
+
+    <section id="explore">
+        <h2>Explore</h2>
+        <!-- Categories like Eco-Travel, Budget, etc. -->
+    </section>
+{% endblock %}
