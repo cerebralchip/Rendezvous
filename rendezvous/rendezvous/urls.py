@@ -39,8 +39,10 @@ urlpatterns = [
     path("settings/", views.settings, name="settings"),
     path("about/", views.about, name="about"),
 
-    path('login/', auth_views.LoginView.as_view(template_name='rendezvous/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+
     path("register/", views.register, name="register"),
 
     path("country/", views.country, name="country"),
