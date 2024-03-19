@@ -21,9 +21,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.Username
 
-
-
-
 class Post(models.Model):
     # prost id, primary key
     PostID = models.IntegerField()
