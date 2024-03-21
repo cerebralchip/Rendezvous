@@ -4,9 +4,6 @@ from .models import Country, User, Post, Tag, Comment
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('CountryID', 'CountryName')
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('user', 'BornInCountryID', 'LivingInCountryID')
-
 class PostAdmin(admin.ModelAdmin):
     list_display = ('PostID', 'Text', 'CountryID', 'published_date')
     list_filter = ('is_featured', 'published_date', 'CountryID')
@@ -23,4 +20,3 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comment, CommentAdmin)
-admin.site.register(User, UserAdmin)

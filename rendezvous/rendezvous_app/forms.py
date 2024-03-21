@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, UserProfile, User
+from .models import Post, Profile
 
 class PostForm(forms.ModelForm):
     Text = forms.CharField(label='Post Content')
@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
-        model = User
+        model = Profile
         fields = ('username', 'email', 'password',)
 
 class UserProfileForm(forms.ModelForm):
