@@ -52,102 +52,32 @@
     <div class="container my-5">
       <h2 class="section-title">Feed</h2>
       <hr class="section-separator" />
-      <div class="discover-feed-card">
-        <img
-          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          class="discover-feed-img"
-          alt="..."
-        />
-        <div>
-          <h5 class="discover-feed-title">Post Title</h5>
-          <div class="discover-feed-separator"></div>
-          <p class="discover-feed-text">
-            This text represents the blog post description it should be one or
-            two sentences long. This text represents the blog post description
-            it should be one or two sentences long. This text represents the
-            blog post description it should be one or two sentences long. This
-            text represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long. This text represents the blog
-            post description it should be one or two sentences long. This text
-            represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long.
-          </p>
-        </div>
-      </div>
-      <div class="discover-feed-card">
-        <img
-          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          class="discover-feed-img"
-          alt="..."
-        />
-        <div>
-          <h5 class="discover-feed-title">Post Title</h5>
-          <div class="discover-feed-separator"></div>
-          <p class="discover-feed-text">
-            This text represents the blog post description it should be one or
-            two sentences long. This text represents the blog post description
-            it should be one or two sentences long. This text represents the
-            blog post description it should be one or two sentences long. This
-            text represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long. This text represents the blog
-            post description it should be one or two sentences long. This text
-            represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long.
-          </p>
-        </div>
-      </div>
-      <div class="discover-feed-card">
-        <img
-          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          class="discover-feed-img"
-          alt="..."
-        />
-        <div>
-          <h5 class="discover-feed-title">Post Title</h5>
-          <div class="discover-feed-separator"></div>
-          <p class="discover-feed-text">
-            This text represents the blog post description it should be one or
-            two sentences long. This text represents the blog post description
-            it should be one or two sentences long. This text represents the
-            blog post description it should be one or two sentences long. This
-            text represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long. This text represents the blog
-            post description it should be one or two sentences long. This text
-            represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long.
-          </p>
-        </div>
-      </div>
-      <div class="discover-feed-card">
-        <img
-          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-          class="discover-feed-img"
-          alt="..."
-        />
-        <div>
-          <h5 class="discover-feed-title">Post Title</h5>
-          <div class="discover-feed-separator"></div>
-          <p class="discover-feed-text">
-            This text represents the blog post description it should be one or
-            two sentences long. This text represents the blog post description
-            it should be one or two sentences long. This text represents the
-            blog post description it should be one or two sentences long. This
-            text represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long. This text represents the blog
-            post description it should be one or two sentences long. This text
-            represents the blog post description it should be one or two
-            sentences long. This text represents the blog post description it
-            should be one or two sentences long.
-          </p>
-        </div>
-      </div>
+      <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/recent-posts/',
+                dataType: 'json',
+                success: function(data) {
+                    var posts = JSON.parse(data);  // Parse the JSON data
+                    posts.forEach(function(post) {
+                        // Assuming 'fields' contains the Post model fields
+                        $('.discover-feed-card').append(
+                            '<div>' +
+                            '<img src="' + post.fields.Picture + '" class="discover-feed-img" alt="...">' +
+                            '<div>' +
+                            '<h5 class="discover-feed-title">Post Title</h5>' +
+                            '<div class="discover-feed-separator"></div>' +
+                            '<p class="discover-feed-text">' + post.fields.Text + '</p>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    });
+                }
+            });
+        });
+        </script>
+      
+
       <div class="text-center mt-4">
         <a href="all-posts-page.html" class="btn btn-dark btn-lg">All Posts</a>
       </div>

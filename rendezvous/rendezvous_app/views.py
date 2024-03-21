@@ -1,13 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
-from rendezvous_app.models import Country, Post
 from django.shortcuts import render, get_object_or_404, redirect
+
 from django.http import HttpResponse
+
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
+from django.core import serializers
+
+from rendezvous_app.models import Country, Post
+
+
 
 
 from .forms import PostForm
@@ -124,3 +127,11 @@ def comment(request):
     # Add your logic here
     return HttpResponse("This is where comments are handled.")
 
+
+################# API Views #################
+
+# Get Recent posts as used in discover page
+def get_recent_posts(request):
+    recent_posts = Post.objects.order_by('-published_date')[:5]
+    recent_posts_json = serializers.serialize('json', recent_posts)
+    return HttpResponse(recent_posts_json, content_type='application/json')
