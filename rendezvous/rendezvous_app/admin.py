@@ -1,10 +1,16 @@
 from django.contrib import admin
-from .models import Country, User, Post, Tag, Comment
+from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
+from django.contrib.auth.models import User
+from .models import Country, Profile, Post, Tag, Comment
+
+# Unregister the original User admin
+admin.site.unregister(User)
+
 
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('CountryID', 'CountryName')
 
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(DefaultUserAdmin):
     list_display = ('user', 'BornInCountryID', 'LivingInCountryID')
 
 class PostAdmin(admin.ModelAdmin):
