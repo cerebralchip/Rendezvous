@@ -1,11 +1,48 @@
-<!-- register.html -->
-{% extends 'base.html' %}
+{% extends 'rendezvous/base.html' %}
 
 {% block content %}
-<h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+  <div class="container login-container">
+    <h2>Register</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <h3>User Details</h3>
+      <div class="form-group">
+        <label for="{{ user_form.username.id_for_label }}">{{ user_form.username.label }}</label>
+        {{ user_form.username }}
+      </div>
+      <div class="form-group">
+        <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+        {{ user_form.email }}
+      </div>
+      <div class="form-group">
+        <label for="{{ user_form.password.id_for_label }}">{{ user_form.password.label }}</label>
+        {{ user_form.password }}
+      </div>
+
+      <h3>Profile Details</h3>
+      <div class="form-group">
+        <label for="{{ profile_form.bio.id_for_label }}">{{ profile_form.bio.label }}</label>
+        {{ profile_form.bio }}
+      </div>
+      <div class="form-group">
+        <label for="{{ profile_form.picture.id_for_label }}">{{ profile_form.picture.label }}</label>
+        {{ profile_form.picture }}
+      </div>
+      <div class="form-group">
+        <label for="{{ profile_form.born_in_country.id_for_label }}">{{ profile_form.born_in_country.label }}</label>
+        {{ profile_form.born_in_country }}
+      </div>
+      <div class="form-group">
+        <label for="{{ profile_form.living_in_country.id_for_label }}">{{ profile_form.living_in_country.label }}</label>
+        {{ profile_form.living_in_country }}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+    {% if registered %}
+      <p>Thank you for registering! You can now <a href="{% url 'login' %}">log in</a>.</p>
+    {% endif %}
+  </div>
 {% endblock %}
