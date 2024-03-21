@@ -22,7 +22,7 @@ def login_view(request):
             return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request, 'rendezvous/login.html', {'form': form})
+    return render(request, 'rendezvous/login.html', {'form': form}, {'active_page': 'login'})
 
 # define logout view
 def logout_view(request):
@@ -76,7 +76,7 @@ def discover(request):
 # Define the resources view
 def resources(request):
     # Add your logic here
-    return render(request, 'rendezvous/resources.html'. {'active_page': 'resources'})
+    return render(request, 'rendezvous/resources.html', {'active_page': 'resources'})
 
 # Define the profile view
 def profile(request):
