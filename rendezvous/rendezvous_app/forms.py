@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post, Profile
+from django.contrib.auth.models import User
 
 class PostForm(forms.ModelForm):
     Text = forms.CharField(label='Post Content')
@@ -12,10 +13,10 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
-        model = Profile
+        model = User
         fields = ('username', 'email', 'password',)
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
-        fields = ('bio', 'picture', 'born_in_country', 'living_in_country',)
+        model = Profile
+        fields = ('Bio', 'Picture', 'BornInCountryID', 'LivingInCountryID',)
