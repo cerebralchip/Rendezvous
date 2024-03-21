@@ -71,7 +71,7 @@ def map(request):
 # Define the discover view
 def discover(request):
     # Add your logic here
-    return render(request, 'rendezvous/discover.html')
+    return render(request, 'rendezvous/discover.html', {'active_page': 'discover'})
 
 # Define the resources view
 def resources(request):
@@ -91,7 +91,7 @@ def settings(request):
 # Define the about view
 def about(request):
     # Add your logic here
-    return render(request, 'rendezvous/about.html')
+    return render(request, 'rendezvous/about.html', {'active_page': 'about'})
 
 # Define the register view
 def register(request):

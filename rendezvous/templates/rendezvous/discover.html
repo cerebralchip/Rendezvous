@@ -1,8 +1,17 @@
-{% extends "base.html" %}
+{% extends base.html %}
+
+{% block title %}Discover - RENDEZVOUS{% endblock %}
+{% block additionalCSS %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+{% endblock %}
+
+<!-- {% extends "base.html" %}
     {% block content %}
         <section id="feed">
             <h1>Feed</h1>
-            <!-- Loop through posts -->
+            !!! Loop through posts
             {% for post in posts %}
             <article>
                 <h2>Post Title</h2>
@@ -10,9 +19,9 @@
             </article>
             {% endfor %}
             
-            <!-- Pagination -->
+            Pagination
             <div id="pagination">
-                <!-- Pagination links -->
+                !!! Pagination links
             </div>
         </section>
 
@@ -25,7 +34,7 @@
         </section>
 
         <section id="social-media">
-            <!-- Social media links -->
+            !!! Social media links
         </section>
     {% endblock %}
     
@@ -33,7 +42,216 @@
     <aside>
         <section id="popular">
             <h2>Popular</h2>
-            <!-- Popular posts go here -->
+            !!! Popular posts go here
         </section>
     </aside>
-    {% endblock %}
+    {% endblock %} -->
+
+{% block content %}
+    <!-- Discover Page Content -->
+    <div class="container my-5">
+      <h2 class="section-title">Feed</h2>
+      <hr class="section-separator" />
+      <div class="discover-feed-card">
+        <img
+          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          class="discover-feed-img"
+          alt="..."
+        />
+        <div>
+          <h5 class="discover-feed-title">Post Title</h5>
+          <div class="discover-feed-separator"></div>
+          <p class="discover-feed-text">
+            This text represents the blog post description it should be one or
+            two sentences long. This text represents the blog post description
+            it should be one or two sentences long. This text represents the
+            blog post description it should be one or two sentences long. This
+            text represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long. This text represents the blog
+            post description it should be one or two sentences long. This text
+            represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long.
+          </p>
+        </div>
+      </div>
+      <div class="discover-feed-card">
+        <img
+          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          class="discover-feed-img"
+          alt="..."
+        />
+        <div>
+          <h5 class="discover-feed-title">Post Title</h5>
+          <div class="discover-feed-separator"></div>
+          <p class="discover-feed-text">
+            This text represents the blog post description it should be one or
+            two sentences long. This text represents the blog post description
+            it should be one or two sentences long. This text represents the
+            blog post description it should be one or two sentences long. This
+            text represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long. This text represents the blog
+            post description it should be one or two sentences long. This text
+            represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long.
+          </p>
+        </div>
+      </div>
+      <div class="discover-feed-card">
+        <img
+          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          class="discover-feed-img"
+          alt="..."
+        />
+        <div>
+          <h5 class="discover-feed-title">Post Title</h5>
+          <div class="discover-feed-separator"></div>
+          <p class="discover-feed-text">
+            This text represents the blog post description it should be one or
+            two sentences long. This text represents the blog post description
+            it should be one or two sentences long. This text represents the
+            blog post description it should be one or two sentences long. This
+            text represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long. This text represents the blog
+            post description it should be one or two sentences long. This text
+            represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long.
+          </p>
+        </div>
+      </div>
+      <div class="discover-feed-card">
+        <img
+          src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          class="discover-feed-img"
+          alt="..."
+        />
+        <div>
+          <h5 class="discover-feed-title">Post Title</h5>
+          <div class="discover-feed-separator"></div>
+          <p class="discover-feed-text">
+            This text represents the blog post description it should be one or
+            two sentences long. This text represents the blog post description
+            it should be one or two sentences long. This text represents the
+            blog post description it should be one or two sentences long. This
+            text represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long. This text represents the blog
+            post description it should be one or two sentences long. This text
+            represents the blog post description it should be one or two
+            sentences long. This text represents the blog post description it
+            should be one or two sentences long.
+          </p>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="all-posts-page.html" class="btn btn-dark btn-lg">All Posts</a>
+      </div>
+    </div>
+    <div class="newsletter-subscribe">
+      <h2>Subscribe to our newsletter</h2>
+      <form class="subscribe-form">
+        <input
+          type="email"
+          class="form-control subscribe-email"
+          placeholder="Enter your email"
+        />
+        <button type="submit" class="btn subscribe-button">Subscribe</button>
+      </form>
+      <div class="social-icons">
+        <a
+          href="./assets/5282541_fb_social media_facebook_facebook logo_social network_icon.svg"
+          class="social-icon"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <!-- Popular posts -->
+    <div class="container my-5">
+      <h2 class="section-title">Popular</h2>
+      <hr class="section-separator" />
+      <div class="row">
+        <!-- Mock post 1 -->
+        <div class="col-md-4">
+          <div class="card bg-dark text-white">
+            <img
+              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="card-img"
+              alt="Post Image"
+            />
+            <div
+              class="card-img-overlay d-flex flex-column justify-content-end"
+            >
+              <h5 class="card-title">Post Title</h5>
+              <p class="card-text">
+                This text represents the blog post description it should be one
+                or two sentences long.
+              </p>
+              <hr class="card-inside-separator" />
+              <p class="card-meta">
+                <small>Username</small><br />
+                <small>12 February 2024</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Mock post 2 -->
+        <div class="col-md-4">
+          <div class="card bg-dark text-white">
+            <img
+              src="https://images.pexels.com/photos/984888/pexels-photo-984888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="card-img"
+              alt="Post Image"
+            />
+            <div
+              class="card-img-overlay d-flex flex-column justify-content-end"
+            >
+              <h5 class="card-title">Post Title</h5>
+              <p class="card-text">
+                This text represents the blog post description it should be one
+                or two sentences long.
+              </p>
+              <hr class="card-inside-separator" />
+              <p class="card-meta">
+                <small>Username</small><br />
+                <small>12 February 2024</small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Mock post 3 -->
+        <div class="col-md-4">
+          <div class="card bg-dark text-white">
+            <img
+              src="https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="card-img"
+              alt="Post Image"
+            />
+            <div
+              class="card-img-overlay d-flex flex-column justify-content-end"
+            >
+              <h5 class="card-title">Post Title</h5>
+              <p class="card-text">
+                This text represents the blog post description it should be one
+                or two sentences long.
+              </p>
+              <hr class="card-inside-separator" />
+              <p class="card-meta">
+                <small>Username</small><br />
+                <small>12 February 2024</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

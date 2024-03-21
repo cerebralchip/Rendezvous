@@ -3,13 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Rendezvous{% endblock %}</title>
-    {% block extra_css %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block additionalCSS %}{% endblock %}
 </head>
 <body>
-    <header>
-        {% include 'nav.html' %}
-    </header>
+
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">RENDEZVOUS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'home' %}active{% endif %}" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'discover' %}active{% endif %}" href="{% url 'discover' %}">Discover</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'travel_resources' %}active{% endif %}" href="{% url 'travel_resources' %}">Travel Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if active_page == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                    </li>
+                    <form class="d-flex" action="{% url 'search' %}" method="get">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="bi bi-person-circle" style="font-size: 1.5rem"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <main>
         {% block content %}
@@ -17,9 +55,23 @@
         {% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2023 Rendezvous. All rights reserved.</p>
-    </footer>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center footer-custom-height">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="mb-0">RENDEZVOUS</h5>
+              <p class="mb-0">
+                Internet Technology, Team 11, 2024 All rights reserved
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- TODO: CHANGE WRITE POST TO CORRECT FUNCTIONALITY -->
+      <a href="write-post.html" class="btn btn-primary rounded-circle sticky-button">+</a>
 
     {% block extra_js %}{% endblock %}
 </body>
