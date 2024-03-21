@@ -1,0 +1,41 @@
+This file is to dump stuff temprarily. :)
+
+<!-- {% extends "base.html" %}
+    {% block !!!!content %}
+        <section id="feed">
+            <h1>Feed</h1>
+            !!! Loop through posts
+            {% for post in posts %}
+            <article>
+                <h2>Post Title</h2>
+                <p>{{ post.text }}</p>
+            </article>
+            {% endfor %}
+            
+            Pagination
+            <div id="pagination">
+                !!! Pagination links
+            </div>
+        </section>
+
+        <section id="newsletter">
+            <h2>Subscribe to our newsletter</h2>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+
+        <section id="social-media">
+            !!! Social media links
+        </section>
+    {% endblock %}
+    
+    {% block extra_html %}
+    <aside>
+        <section id="popular">
+            <h2>Popular</h2>
+            !!! Popular posts go here
+        </section>
+    </aside>
+    {% endblock %} -->

@@ -7,179 +7,88 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
 {% endblock %}
 
-<!-- {% extends "base.html" %}
-    {% block content %}
-        <section id="feed">
-            <h1>Feed</h1>
-            !!! Loop through posts
-            {% for post in posts %}
-            <article>
-                <h2>Post Title</h2>
-                <p>{{ post.text }}</p>
-            </article>
-            {% endfor %}
-            
-            Pagination
-            <div id="pagination">
-                !!! Pagination links
-            </div>
-        </section>
-
-        <section id="newsletter">
-            <h2>Subscribe to our newsletter</h2>
-            <form action="#" method="post">
-                <input type="email" name="email" placeholder="Enter your email">
-                <button type="submit">Subscribe</button>
-            </form>
-        </section>
-
-        <section id="social-media">
-            !!! Social media links
-        </section>
-    {% endblock %}
-    
-    {% block extra_html %}
-    <aside>
-        <section id="popular">
-            <h2>Popular</h2>
-            !!! Popular posts go here
-        </section>
-    </aside>
-    {% endblock %} -->
-
 {% block content %}
     <!-- Discover Page Content -->
     <div class="container my-5">
       <h2 class="section-title">Feed</h2>
       <hr class="section-separator" />
+      <div class="discover-feed-container">
+        <!-- Posts will be added here dynamically -->
+      </div>
       <script>
         $(document).ready(function() {
             $.ajax({
                 url: '/api/recent-posts/',
                 dataType: 'json',
                 success: function(data) {
-                    var posts = JSON.parse(data);  // Parse the JSON data
-                    posts.forEach(function(post) {
-                        // Assuming 'fields' contains the Post model fields
-                        $('.discover-feed-card').append(
-                            '<div>' +
-                            '<img src="' + post.fields.Picture + '" class="discover-feed-img" alt="...">' +
-                            '<div>' +
-                            '<h5 class="discover-feed-title">Post Title</h5>' +
-                            '<div class="discover-feed-separator"></div>' +
-                            '<p class="discover-feed-text">' + post.fields.Text + '</p>' +
-                            '</div>' +
-                            '</div>'
-                        );
+                    data.forEach(function(post) {
+                        // Access the 'fields' property of each post object
+                        var fields = post.fields;
+                        var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust the default image path
+                        var postHtml = '<div class="discover-feed-card">' +
+                                        '<img src="' + pictureUrl + '" class="discover-feed-img" alt="Post Image">' +
+                                        '<div>' +
+                                            '<h5 class="discover-feed-title">' + fields.Title + '</h5>' + 
+                                            '<div class="discover-feed-separator"></div>' +
+                                            '<p class="discover-feed-text">' + fields.Text.substring(0, 100) + '...</p>' +
+                                        '</div>' +
+                                       '</div>';
+        
+                        // Append the new post HTML to the container
+                        $('.discover-feed-container').append(postHtml);
                     });
                 }
             });
         });
         </script>
-      
-
-      <div class="text-center mt-4">
-        <a href="all-posts-page.html" class="btn btn-dark btn-lg">All Posts</a>
-      </div>
-    </div>
-    <div class="newsletter-subscribe">
-      <h2>Subscribe to our newsletter</h2>
-      <form class="subscribe-form">
-        <input
-          type="email"
-          class="form-control subscribe-email"
-          placeholder="Enter your email"
-        />
-        <button type="submit" class="btn subscribe-button">Subscribe</button>
-      </form>
-      <div class="social-icons">
-        <a
-          href="./assets/5282541_fb_social media_facebook_facebook logo_social network_icon.svg"
-          class="social-icon"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-      </div>
     </div>
     <!-- Popular posts -->
     <div class="container my-5">
       <h2 class="section-title">Popular</h2>
       <hr class="section-separator" />
       <div class="row">
-        <!-- Mock post 1 -->
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Post Image"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
+        <div class="popular_posts_container">
+          <!-- Popular posts will be added here dynamically -->
+
         </div>
-        <!-- Mock post 2 -->
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/984888/pexels-photo-984888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Post Image"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Mock post 3 -->
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Post Image"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
+        <script>
+          $(document).ready(function() {
+              $.ajax({
+                  url: '/api/popular-posts/', // Adjust this URL to the one you've set up for popular posts
+                  dataType: 'json',
+                  success: function(data) {
+                      data.forEach(function(post) {
+                          var fields = post.fields;
+                          // Construct the URL for the post image
+                          var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust with your default image path
+                          // Format the published date in a more readable format if necessary
+                          var publishedDate = new Date(fields.published_date).toLocaleDateString("en-GB", {
+                              year: 'numeric', month: 'long', day: 'numeric'
+                          });
+                          
+                          var postHtml = 
+                              '<div class="col-md-4">' +
+                                  '<div class="card bg-dark text-white">' +
+                                      '<img src="' + pictureUrl + '" class="card-img" alt="Post Image">' +
+                                      '<div class="card-img-overlay d-flex flex-column justify-content-end">' +
+                                          '<h5 class="card-title">' + fields.Title + '</h5>' + 
+                                          '<p class="card-text">' + fields.Text.substring(0, 100) + '...</p>' + 
+                                          '<hr class="card-inside-separator">' +
+                                          '<p class="card-meta">' +
+                                              '<small>Username</small><br />' + // Replace 'Username' with dynamic data if available
+                                              '<small>' + publishedDate + '</small>' +
+                                          '</p>' +
+                                      '</div>' +
+                                  '</div>' +
+                              '</div>';
+          
+                          // Append the constructed HTML to a container, e.g., one with class 'row'
+                          $('.row').append(postHtml);
+                      });
+                  }
+              });
+          });
+        </script>
       </div>
     </div>
 {% endblock %}
