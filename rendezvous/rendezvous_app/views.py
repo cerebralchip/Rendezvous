@@ -76,7 +76,7 @@ def discover(request):
 # Define the resources view
 def resources(request):
     # Add your logic here
-    return render(request, 'rendezvous/resources.html')
+    return render(request, 'rendezvous/resources.html'. {'active_page': 'resources'})
 
 # Define the profile view
 def profile(request):
