@@ -22,10 +22,13 @@ class User(models.Model):
         return self.Username
 
 class Post(models.Model):
-    # prost id, primary key
-    PostID = models.AutoField(primary_key=True)
+    # post id, primary key
+    PostID = models.IntegerField()
+    # profile.user.username, foreign key
+    UserID = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     Picture = models.ImageField()
-    Text = models.CharField(max_length=1000)
+    Title = models.CharField(max_length=100, default='Post Title')
+    Text = models.CharField(max_length=10000)
     Upvotes = models.IntegerField(default=0)  # Provide a default value
     Downvotes = models.IntegerField(default=0)  # Provide a default value
     CountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='posts')

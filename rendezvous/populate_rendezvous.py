@@ -23,6 +23,7 @@ def populate():
     profiles = [
         {'username': 'user1', 'BornInCountryID_id': 1, 'LivingInCountryID_id': 1, 'Picture': 'profile_pics/user1.jpg', 'Bio': 'I love to travel!'},
         {'username': 'user2', 'BornInCountryID_id': 2, 'LivingInCountryID_id': 2, 'Picture': 'profile_pics/user2.jpg', 'Bio': 'I am a foodie!'},
+        {'username': 'user3', 'BornInCountryID_id': 2, 'LivingInCountryID_id': 3, 'Picture': 'profile_pics/user3.jpg', 'Bio': 'I enjoy learning about different cultures.'}
         # Add more users as needed
     ]
 
@@ -31,7 +32,7 @@ def populate():
         if created:
             user.set_password('12345')  # Set a default password
             user.save()
-        profile_data.pop('username')  # Remove the username field
+        profile_data.pop('username')  # Remove the username field from profile because it is in profile.user, not profile
         profile, created = Profile.objects.get_or_create(user=user, **profile_data)
 
     # Create tags
@@ -47,8 +48,12 @@ def populate():
 
     # Create posts
     posts = [
-        {'PostID': 1, 'Text': 'Amazing trip to the mountains!', 'Upvotes': 10, 'Downvotes': 0, 'CountryID_id': 1, 'is_featured': True},
-        {'PostID': 2, 'Text': 'Delicious cuisine in Paris', 'Upvotes': 5, 'Downvotes': 1, 'CountryID_id': 3, 'is_featured': False},
+        # Generate 5 example posts
+        {'PostID': 1, 'UserID_id': 1, 'Picture': 'Screenshot_2024-03-02_at_17.27.57_7W7smpP.png', 'Title': 'Hello', 'Text': 'Exploring the Grand Canyon', 'CountryID_id': 1, 'is_featured': True},
+        {'PostID': 2, 'UserID_id': 2, 'Picture': 'Screenshot_2024-03-02_at_17.27.57.png', 'Title': 'World', 'Text': 'Eating fish and chips in London', 'Upvotes':'4', 'CountryID_id': 2, 'is_featured': True},
+        {'PostID': 3, 'UserID_id': 1, 'Picture': 'Screenshot_2024-03-17_at_20.22.35.png', 'Title': 'testing', 'Text': 'Visiting the Eiffel Tower', 'CountryID_id': 3},
+        {'PostID': 4, 'UserID_id': 2, 'Picture': 'Screenshot_2024-03-18_at_15.17.31.png', 'Title': '1234', 'Text': 'Hiking in the Scottish Highlands', 'Upvotes':'12', 'CountryID_id': 2, },
+        {'PostID': 5, 'UserID_id': 1, 'Picture': '', 'Title': 'foobar','Text': 'Trying sushi in Tokyo', 'CountryID_id': 1},
         # Add more posts as needed
     ]
 

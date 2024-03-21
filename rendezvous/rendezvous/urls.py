@@ -54,6 +54,7 @@ urlpatterns = [
     path('create_post/', views.create_post, name='create_post'),
 
     path('api/recent-posts/', views.get_recent_posts, name='recent-posts'),
+    path('api/popular-posts/', views.get_popular_posts, name='popular-posts'),
 ]
 
 if settings.DEBUG:

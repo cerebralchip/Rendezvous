@@ -135,3 +135,9 @@ def get_recent_posts(request):
     recent_posts = Post.objects.order_by('-published_date')[:5]
     recent_posts_json = serializers.serialize('json', recent_posts)
     return HttpResponse(recent_posts_json, content_type='application/json')
+
+# Get most popular posts (i.e. posts with the most upvotes)
+def get_popular_posts(request):
+    popular_posts = Post.objects.order_by('-Upvotes')[:3]
+    popular_posts_json = serializers.serialize('json', popular_posts)
+    return HttpResponse(popular_posts_json, content_type='application/json')
