@@ -8,10 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 
+
 from django.core import serializers
 
 from rendezvous_app.models import Country, Post, Profile
 from .forms import UserForm, UserProfileForm, PostForm
+
+import json
 
 # Define the home view
 def index(request):
