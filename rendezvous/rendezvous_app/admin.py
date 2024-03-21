@@ -5,10 +5,10 @@ class CountryAdmin(admin.ModelAdmin):
     list_display = ('CountryID', 'CountryName')
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('UserID', 'Username', 'BornInCountryID', 'LivingInCountryID')
+    list_display = ('user', 'BornInCountryID', 'LivingInCountryID')
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'Text', 'CountryID', 'published_date')
+    list_display = ('PostID', 'Text', 'CountryID', 'published_date')
     list_filter = ('is_featured', 'published_date', 'CountryID')
     search_fields = ('Text',)
 
@@ -23,3 +23,4 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(User, UserAdmin)
