@@ -4,6 +4,13 @@ html {
   background-color: #fff;
 }
 
+body { 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
 .navbar-brand,
 .nav-link {
   color: #fff !important;
@@ -353,6 +360,38 @@ html {
   color: #343a40;
 }
 
+.login-container {
+  max-width: 800px;
+  padding: 2rem;
+  margin: 2rem auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  background: #ffffff;
+}
+
+.login-container form {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #333;
+  border: none;
+  color: #fff; 
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #555;
+  color: #fff;
+}
+
+main {
+  flex: 1;
+}
+
+main.flex-shrink-0 {
+  flex-grow: 1;
+}
+
 @media (max-width: 768px) {
   .card {
     margin-bottom: 2rem;
@@ -392,3 +431,4 @@ html {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 }
+
