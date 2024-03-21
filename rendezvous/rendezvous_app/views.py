@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 from django.core import serializers
 
-from rendezvous_app.models import Country, Post, User, Profile
+from rendezvous_app.models import Country, Post, Profile
 from .forms import UserForm, UserProfileForm, PostForm
 
 # Define the home view

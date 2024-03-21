@@ -11,7 +11,7 @@ class Country(models.Model):
     class Meta:
         verbose_name_plural = 'countries'
 
-class User(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
