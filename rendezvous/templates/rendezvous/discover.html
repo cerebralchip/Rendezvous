@@ -1,39 +1,96 @@
 {% extends "base.html" %}
-    {% block content %}
-        <section id="feed">
-            <h1>Feed</h1>
-            <!-- Loop through posts -->
-            {% for post in posts %}
-            <article>
-                <h2>Post Title</h2>
-                <p>{{ post.text }}</p>
-            </article>
-            {% endfor %}
-            
-            <!-- Pagination -->
-            <div id="pagination">
-                <!-- Pagination links -->
-            </div>
-        </section>
 
-        <section id="newsletter">
-            <h2>Subscribe to our newsletter</h2>
-            <form action="#" method="post">
-                <input type="email" name="email" placeholder="Enter your email">
-                <button type="submit">Subscribe</button>
-            </form>
-        </section>
+{% block title %}Discover - RENDEZVOUS{% endblock %}
+{% block additionalCSS %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
-        <section id="social-media">
-            <!-- Social media links -->
-        </section>
-    {% endblock %}
-    
-    {% block extra_html %}
-    <aside>
-        <section id="popular">
-            <h2>Popular</h2>
-            <!-- Popular posts go here -->
-        </section>
-    </aside>
-    {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <!-- Discover Page Content -->
+    <div class="container my-5">
+      <h2 class="section-title">Feed</h2>
+      <hr class="section-separator" />
+      <div class="discover-feed-container">
+        <!-- Posts will be added here dynamically -->
+      </div>
+      <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/recent-posts/',
+                dataType: 'json',
+                success: function(data) {
+                    data.forEach(function(post) {
+                        // Access the 'fields' property of each post object
+                        var fields = post.fields;
+                        var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust the default image path
+                        var postHtml = '<div class="discover-feed-card">' +
+                                        '<img src="' + pictureUrl + '" class="discover-feed-img" alt="Post Image">' +
+                                        '<div>' +
+                                            '<h5 class="discover-feed-title">' + fields.Title + '</h5>' + 
+                                            '<div class="discover-feed-separator"></div>' +
+                                            '<p class="discover-feed-text">' + fields.Text.substring(0, 100) + '...</p>' +
+                                        '</div>' +
+                                       '</div>';
+        
+                        // Append the new post HTML to the container
+                        $('.discover-feed-container').append(postHtml);
+                    });
+                }
+            });
+        });
+        </script>
+    </div>
+    <!-- Popular posts -->
+    <div class="container my-5">
+      <h2 class="section-title">Popular</h2>
+      <hr class="section-separator" />
+      <div class="row">
+        <div class="popular_posts_container">
+          <!-- Popular posts will be added here dynamically -->
+
+        </div>
+        <script>
+          $(document).ready(function() {
+              $.ajax({
+                  url: '/api/popular-posts/', // Adjust this URL to the one you've set up for popular posts
+                  dataType: 'json',
+                  success: function(data) {
+                      data.forEach(function(post) {
+                          var fields = post.fields;
+                          // Construct the URL for the post image
+                          var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust with your default image path
+                          // Format the published date in a more readable format if necessary
+                          var publishedDate = new Date(fields.published_date).toLocaleDateString("en-GB", {
+                              year: 'numeric', month: 'long', day: 'numeric'
+                          });
+                          
+                          var postHtml = 
+                              '<div class="col-md-4">' +
+                                  '<div class="card bg-dark text-white">' +
+                                      '<img src="' + pictureUrl + '" class="card-img" alt="Post Image">' +
+                                      '<div class="card-img-overlay d-flex flex-column justify-content-end">' +
+                                          '<h5 class="card-title">' + fields.Title + '</h5>' + 
+                                          '<p class="card-text">' + fields.Text.substring(0, 100) + '...</p>' + 
+                                          '<hr class="card-inside-separator">' +
+                                          '<p class="card-meta">' +
+                                              '<small>Username</small><br />' + // Replace 'Username' with dynamic data if available
+                                              '<small>' + publishedDate + '</small>' +
+                                          '</p>' +
+                                      '</div>' +
+                                  '</div>' +
+                              '</div>';
+          
+                          // Append the constructed HTML to a container, e.g., one with class 'row'
+                          $('.row').append(postHtml);
+                      });
+                  }
+              });
+          });
+        </script>
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

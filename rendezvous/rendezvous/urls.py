@@ -29,7 +29,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path("", views.home, name="home"),
+    path("", views.index, name="index"),
     path("map/", views.map, name="map"),
     path("discover/", views.discover, name="discover"),
     path("resources/", views.resources, name="resources"),
@@ -52,6 +52,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("post/<int:post_id>/", views.post_detail, name="post_detail"),
     path('create_post/', views.create_post, name='create_post'),
+
+    path('api/recent-posts/', views.get_recent_posts, name='recent-posts'),
+    path('api/popular-posts/', views.get_popular_posts, name='popular-posts'),
 ]
 
 if settings.DEBUG:

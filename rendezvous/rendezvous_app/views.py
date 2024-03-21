@@ -1,13 +1,16 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
-from rendezvous_app.models import Country, Post
 from django.shortcuts import render, get_object_or_404, redirect
+
 from django.http import HttpResponse
+
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
+from django.core import serializers
+
+from rendezvous_app.models import Country, Post
+
+
 
 
 from .forms import PostForm
@@ -22,7 +25,7 @@ def login_view(request):
             return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request, 'rendezvous/login.html', {'form': form})
+    return render(request, 'rendezvous/login.html', {'form': form}, {'active_page': 'login'})
 
 # define logout view
 def logout_view(request):
@@ -31,7 +34,7 @@ def logout_view(request):
         return redirect('home')
 
 # Define the home view
-def home(request):
+def index(request):
     # Fetch featured and recent posts from the database
     featured_posts = Post.objects.filter(is_featured=True).order_by('-published_date')[:3]
     recent_posts = Post.objects.order_by('-published_date')[:5]
@@ -46,7 +49,7 @@ def home(request):
     }
     
     # Render and return the response, passing in the context data
-    return render(request, 'rendezvous/home.html', context)
+    return render(request, 'rendezvous/index.html', context)
 
 @login_required
 def create_post(request):
@@ -71,12 +74,12 @@ def map(request):
 # Define the discover view
 def discover(request):
     # Add your logic here
-    return render(request, 'rendezvous/discover.html')
+    return render(request, 'rendezvous/discover.html', {'active_page': 'discover'})
 
 # Define the resources view
 def resources(request):
     # Add your logic here
-    return render(request, 'rendezvous/resources.html')
+    return render(request, 'rendezvous/resources.html', {'active_page': 'resources'})
 
 # Define the profile view
 def profile(request):
@@ -91,7 +94,7 @@ def settings(request):
 # Define the about view
 def about(request):
     # Add your logic here
-    return render(request, 'rendezvous/about.html')
+    return render(request, 'rendezvous/about.html', {'active_page': 'about'})
 
 # Define the register view
 def register(request):
@@ -124,3 +127,17 @@ def comment(request):
     # Add your logic here
     return HttpResponse("This is where comments are handled.")
 
+
+################# API Views #################
+
+# Get Recent posts as used in discover page
+def get_recent_posts(request):
+    recent_posts = Post.objects.order_by('-published_date')[:5]
+    recent_posts_json = serializers.serialize('json', recent_posts)
+    return HttpResponse(recent_posts_json, content_type='application/json')
+
+# Get most popular posts (i.e. posts with the most upvotes)
+def get_popular_posts(request):
+    popular_posts = Post.objects.order_by('-Upvotes')[:3]
+    popular_posts_json = serializers.serialize('json', popular_posts)
+    return HttpResponse(popular_posts_json, content_type='application/json')
