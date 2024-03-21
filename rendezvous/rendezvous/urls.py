@@ -29,7 +29,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path("", views.home, name="home"),
+    path("", views.index, name="index"),
     path("map/", views.map, name="map"),
     path("discover/", views.discover, name="discover"),
     path("resources/", views.resources, name="resources"),

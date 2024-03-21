@@ -34,7 +34,7 @@ def logout_view(request):
         return redirect('home')
 
 # Define the home view
-def home(request):
+def index(request):
     # Fetch featured and recent posts from the database
     featured_posts = Post.objects.filter(is_featured=True).order_by('-published_date')[:3]
     recent_posts = Post.objects.order_by('-published_date')[:5]
@@ -49,7 +49,7 @@ def home(request):
     }
     
     # Render and return the response, passing in the context data
-    return render(request, 'rendezvous/home.html', context)
+    return render(request, 'rendezvous/index.html', context)
 
 @login_required
 def create_post(request):
