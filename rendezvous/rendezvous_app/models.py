@@ -11,11 +11,11 @@ class Country(models.Model):
     class Meta:
         verbose_name_plural = 'countries'
 
-class Profile(models.Model):
+class User(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     BornInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='born_users')
     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
-    Picture = models.ImageField()
+    Picture = models.ImageField(upload_to='profile_images', blank=True)
     Bio = models.CharField(max_length=500)
 
     def __str__(self):
@@ -47,7 +47,7 @@ class Tag(models.Model):
         return self.TagName
 
 class Comment(models.Model):
-    CommentID = models.IntegerField()
+    CommentID = models.AutoField(primary_key=True)
     Content = models.CharField(max_length=280)
     UserID = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     Upvotes = models.IntegerField()
