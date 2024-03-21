@@ -8,30 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.core import serializers
 
-from rendezvous_app.models import Country, Post
-
-
-
-
-from .forms import PostForm
-
-# define login view
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'rendezvous/login.html', {'form': form}, {'active_page': 'login'})
-
-# define logout view
-def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('home')
+from rendezvous_app.models import Country, Post, User
+from .forms import UserForm, UserProfileForm, PostForm
 
 # Define the home view
 def index(request):
@@ -96,16 +74,46 @@ def about(request):
     # Add your logic here
     return render(request, 'rendezvous/about.html', {'active_page': 'about'})
 
-# Define the register view
-def register(request):
+# define login view
+def login_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
     else:
-        form = UserCreationForm()
-    return render(request, 'rendezvous/register.html', {'form': form})
+        form = AuthenticationForm()
+    return render(request, 'rendezvous/login.html', {'form': form}, {'active_page': 'login'})
+
+# define logout view
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home')
+
+def register(request):
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        profile_form = UserProfileForm(request.POST, request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            registered = True
+            login(request, user)
+            return redirect('index')
+        else:
+            print(user_form.errors, profile_form.errors)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+    return render(request, 'rendezvous/register.html', {'user_form': user_form, 'profile_form': profile_form})
 
 # Define the country view
 def country(request):
