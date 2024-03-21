@@ -23,7 +23,7 @@ class User(models.Model):
 
 class Post(models.Model):
     # post id, primary key
-    PostID = models.IntegerField()
+    PostID = models.AutoField(primary_key=True)
     # profile.user.username, foreign key
     UserID = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     Picture = models.ImageField()
