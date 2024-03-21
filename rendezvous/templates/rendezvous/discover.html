@@ -46,11 +46,7 @@
     <div class="container my-5">
       <h2 class="section-title">Popular</h2>
       <hr class="section-separator" />
-      <div class="row">
-        <div class="popular_posts_container">
-          <!-- Popular posts will be added here dynamically -->
-
-        </div>
+      <div class="row" id="popular-posts-container">
         <script>
           $(document).ready(function() {
               $.ajax({
@@ -75,16 +71,15 @@
                                           '<p class="card-text">' + fields.Text.substring(0, 100) + '...</p>' + 
                                           '<hr class="card-inside-separator">' +
                                           '<p class="card-meta">' +
-                                              '<small>Username</small><br />' + // Replace 'Username' with dynamic data if available
+                                              '<small>'+ fields.username +'</small><br />' +
                                               '<small>' + publishedDate + '</small>' +
                                           '</p>' +
                                       '</div>' +
                                   '</div>' +
                               '</div>';
           
-                          // Append the constructed HTML to a container, e.g., one with class 'row'
-                          $('.row').append(postHtml);
-                      });
+                          // Append the constructed HTML to a container, e.g., one with class 'row', id 'popular-posts-container'
+                          $('#popular-posts-container').append(postHtml);});
                   }
               });
           });

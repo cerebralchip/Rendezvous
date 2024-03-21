@@ -5,15 +5,15 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 
 from django.core import serializers
 
-from rendezvous_app.models import Country, Post
-
-
-
+from rendezvous_app.models import Country, Post, Profile
 
 from .forms import PostForm
+import json
 
 # define login view
 def login_view(request):
@@ -130,14 +130,25 @@ def comment(request):
 
 ################# API Views #################
 
+def get_posts(order_by, num_posts):
+    posts = Post.objects.order_by(*order_by)[:num_posts]
+    posts_json = serializers.serialize('json', posts)
+    posts_data = json.loads(posts_json)
+    
+    for post in posts_data:
+        user_id = post['fields']['UserID']
+        user = User.objects.get(id=user_id)
+        username = user.username
+        post['fields']['username'] = username
+    
+    return json.dumps(posts_data)
+
 # Get Recent posts as used in discover page
 def get_recent_posts(request):
-    recent_posts = Post.objects.order_by('-published_date')[:5]
-    recent_posts_json = serializers.serialize('json', recent_posts)
+    recent_posts_json = get_posts(['-published_date'], 5)
     return HttpResponse(recent_posts_json, content_type='application/json')
 
 # Get most popular posts (i.e. posts with the most upvotes)
 def get_popular_posts(request):
-    popular_posts = Post.objects.order_by('-Upvotes')[:3]
-    popular_posts_json = serializers.serialize('json', popular_posts)
+    popular_posts_json = get_posts(['-Upvotes'], 3)
     return HttpResponse(popular_posts_json, content_type='application/json')
