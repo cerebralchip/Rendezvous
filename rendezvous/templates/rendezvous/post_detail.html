@@ -39,6 +39,16 @@
                     <textarea name="content" placeholder="Write a comment"></textarea>
                     <button type="submit">Submit</button>
                 </form>
+
+                <div id="comments-container">
+                    <!-- Comments will be displayed here -->
+                </div>
+
             </section>
         </article>
+{% endblock %}
+
+{% block extra_js %}
+{% load static %}
+<script src="{% static 'js/show_comments.js' %}"></script>
 {% endblock %}

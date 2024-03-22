@@ -32,7 +32,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("map/", views.map, name="map"),
     path("discover/", views.discover, name="discover"),
-    path("resources/", views.resources, name="resources"),
+    path("resources/<str:country>", views.resources, name="resources"),
 
     path('accounts/profile/', views.profile, name='profile'),
 

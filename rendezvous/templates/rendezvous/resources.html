@@ -1,10 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Travel Resources - RENDEZVOUS{% endblock %}
+{% block title %}Travel Resources - {{ country }}{% endblock %}
 {% block additionalCSS %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+
+  <div id="PageTitle">
+    <h1>Travel Resources - {{ country }}</h1>
+  </div>
+
+  {% for post in posts %}
+  {% comment %} write code to check if post.tags includes a variable{% endcomment %}
+  {% if "Guides and Tips" in %}
+  <div class="card bg-dark text-white">
+      <img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" />
+      <div class="card-img-overlay d-flex flex-column justify-content-end">
+          <h5 class="card-title">{{ post.Title }}</h5>
+          <p class="card-text">{{ post.Text }}</p>
+          <hr class="card-inside-separator" />
+          <p class="card-meta">
+              <small>{{ post.UserID.username }}</small><br />
+              <small>{{ post.published_date }}</small>
+          </p>
+      </div>
+  </div>
+{% endfor %}
+
     <!-- Guides and Tips -->
     <div class="container my-5">
       <h2 class="section-title">Guides and Tips</h2>

@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         geojson.resetStyle(layer);
                     });
                     layer.on('click', function () {
-                        // Alert with the country name
-                        alert('Clicked on country: ' + feature.properties.name);
+                        // follow link to country page
+                        window.location.href = 'resources/' + feature.properties.name;
                     });
                 }
             }).addTo(map);

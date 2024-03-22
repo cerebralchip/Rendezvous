@@ -48,9 +48,25 @@ def discover(request):
     return render(request, 'rendezvous/discover.html', {'active_page': 'discover'})
 
 # Define the resources view
-def resources(request):
-    # Add your logic here
-    return render(request, 'rendezvous/resources.html', {'active_page': 'resources'})
+def resources(request, country):
+    # Query db for all posts with relevant country tag
+    posts = Post.objects.filter(CountryID__CountryName=country)
+    # Get posts with containing tags
+    guides_and_tips = []
+    eats = []
+    stays = []
+    language = []
+    for post in posts:
+        if post.Tags.filter(TagName='guides_and_tips').exists():
+            guides_and_tips.append(post)
+        if post.Tags.filter(TagName='eats').exists():
+            eats.append(post)
+        if post.Tags.filter(TagName='stays').exists():
+            stays.append(post)
+        if post.Tags.filter(TagName='language').exists():
+            language.append(post)
+
+    return render(request, 'rendezvous/resources.html', {'country': country, 'guides_and_tips': guides_and_tips, 'eats': eats, 'stays': stays, 'language': language, 'active_page': 'resources'})
 
 # Define the profile view
 def profile(request):

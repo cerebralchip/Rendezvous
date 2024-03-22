@@ -7,7 +7,7 @@ class PostForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        fields = ['Picture', 'Text', 'CountryID', 'Tags']
+        fields = ['Picture', 'Title', 'Text', 'CountryID', 'Tags']
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
