@@ -9,12 +9,9 @@
 
 {% block content %}
     <!-- Discover Page Content -->
-    <div class="container my-5">
+    <div class="container my-5" id="discover-feed-container">
       <h2 class="section-title">Feed</h2>
       <hr class="section-separator" />
-      <div class="discover-feed-container">
-        <!-- Posts will be added here dynamically -->
-      </div>
       <script>
         $(document).ready(function() {
             $.ajax({
@@ -35,7 +32,7 @@
                                        '</div>';
         
                         // Append the new post HTML to the container
-                        $('.discover-feed-container').append(postHtml);
+                        $('#discover-feed-container').append(postHtml);
                     });
                 }
             });
