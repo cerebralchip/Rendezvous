@@ -1,5 +1,6 @@
-3£#import os
+import os
 import django
+import json
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rendezvous.settings')
 django.setup()
@@ -9,12 +10,12 @@ from django.contrib.auth.models import User
 
 def populate():
     # Create countries
-    countries = [
-        {'CountryID': 1, 'CountryName': 'United States'},
-        {'CountryID': 2, 'CountryName': 'United Kingdom'},
-        {'CountryID': 3, 'CountryName': 'France'},
-        # Add more countries as needed
-    ]
+    #  Open geojson file at rendezvous/static/js/Globe.json
+    #  Read the file and extract the country names
+    #  Create an entry in the Country table for each country name
+    with open('rendezvous/static/js/Globe.json') as f:
+        data = json.load(f)
+        countries = [{'CountryName': feature['properties']['name']} for feature in data['features']]
 
     for country_data in countries:
         Country.objects.get_or_create(**country_data)
@@ -70,6 +71,8 @@ def populate():
 
     for comment_data in comments:
         Comment.objects.get_or_create(**comment_data)
+
+    
 
 if __name__ == '__main__':
     print('Starting population script...')
