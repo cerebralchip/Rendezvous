@@ -1,43 +1,48 @@
 {% extends "base.html" %}
-{% block content %}
-        <article>
-            <h1>{{ post.Text }}</h1>
-            <p>Country: {{ post.CountryID.CountryName }}</p>
-            <p>Published: {{ post.published_date }}</p>
-            <p>
-                Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}">{{ post.Upvotes }}</a> |
-                Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}">{{ post.Downvotes }}</a>
-            </p>
-            <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
+{% block content %}
+<div class="container py-5">
+    <article class="card mb-4">
+        <div class="card-body">
+            <h1 class="card-title section-title">{{ post.Text }}</h1>
+            <p class="card-text"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
+            <p class="card-text"><strong>Published:</strong> {{ post.published_date }}</p>
+            <p class="card-meta">
+                <small>
+                    Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}" class="btn btn-outline-primary">{{ post.Upvotes }}</a> |
+                    Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger">{{ post.Downvotes }}</a>
+                </small>
+            </p>
+            <p class="card-text"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            
             {% if post.Picture %}
-                <img src="{{ post.Picture.url }}" alt="{{ post.Text }}">
+                <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid">
             {% endif %}
 
-            <div class="post-content">
-                <!-- Display the post content here -->
-                <p>{{ post.Text }}</p>
+            <div class="post-content mt-4">
+                <p class="card-text">{{ post.Text }}</p>
             </div>
+        </div>
+    </article>
 
-            <section class="comments">
-                <h2>Comments</h2>
-                {% if post.comments.all %}
-                    <ul>
-                        {% for comment in post.comments.all %}
-                            <li>
-                                <p>{{ comment.Content }}</p>
-                                <p>By: {{ comment.UserID.username }}</p>
-                                <p>
-                                    Upvotes: <a href="{% url 'upvote_comment' comment_id=comment.CommentID %}">{{ comment.Upvotes }}</a> |
-                                    Downvotes: <a href="{% url 'downvote_comment' comment_id=comment.CommentID %}">{{ comment.Downvotes }}</a>
-                                </p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No comments yet.</p>
-                {% endif %}
-
+    <section class="comments">
+        <h2 class="section-title">Comments</h2>
+        {% if post.comments.all %}
+            <ul class="list-group list-group-flush">
+                {% for comment in post.comments.all %}
+                    <li class="list-group-item">
+                        <p>{{ comment.Content }}</p>
+                        <p><strong>By:</strong> {{ comment.UserID.username }}</p>
+                        <p>
+                            Upvotes: <a href="{% url 'upvote_comment' comment_id=comment.CommentID %}" class="btn btn-sm btn-outline-primary">{{ comment.Upvotes }}</a> |
+                            Downvotes: <a href="{% url 'downvote_comment' comment_id=comment.CommentID %}" class="btn btn-sm btn-outline-danger">{{ comment.Downvotes }}</a>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No comments yet.</p>
+        {% endif %}
                 <!-- Add a form to submit new comments -->
                 <form method="post" action="{% url 'comment' post_id=post.PostID %}">
                     {% csrf_token %}
@@ -56,4 +61,5 @@
 {% block extra_js %}
 {% load static %}
 <script src="{% static 'js/show_comments.js' %}"></script>
+
 {% endblock %}
