@@ -133,6 +133,54 @@ def comment(request, post_id):
             comment.save()
     return redirect('post_detail', post_id=post_id)
 
+def upvote_post(request, post_id):
+    post = get_object_or_404(Post, PostID=post_id)
+    user = request.user
+
+    if user.is_authenticated:
+        if user not in post.upvoted_by.all():
+            post.Upvotes += 1
+            post.upvoted_by.add(user)
+        post.save()
+
+    return redirect('post_detail', post_id=post_id)
+
+def downvote_post(request, post_id):
+    post = get_object_or_404(Post, PostID=post_id)
+    user = request.user
+
+    if user.is_authenticated:
+        if user not in post.downvoted_by.all():
+            post.Downvotes += 1
+            post.downvoted_by.add(user)
+        post.save()
+
+    return redirect('post_detail', post_id=post_id)
+
+def upvote_comment(request, comment_id):
+    comment = get_object_or_404(Comment, CommentID=comment_id)
+    user = request.user
+
+    if user.is_authenticated:
+        if user not in comment.upvoted_by.all():
+            comment.Upvotes += 1
+            comment.upvoted_by.add(user)
+        comment.save()
+
+    return redirect('post_detail', post_id=comment.PostID.PostID)
+
+def downvote_comment(request, comment_id):
+    comment = get_object_or_404(Comment, CommentID=comment_id)
+    user = request.user
+
+    if user.is_authenticated:
+        if user not in comment.downvoted_by.all():
+            comment.Downvotes += 1
+            comment.downvoted_by.add(user)
+        comment.save()
+
+    return redirect('post_detail', post_id=comment.PostID.PostID)
+
 
 ################# API Views #################
 
