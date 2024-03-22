@@ -89,7 +89,7 @@ def login_view(request):
             return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request, 'rendezvous/login.html', {'form': form}, {'active_page': 'login'})
+    return render(request, 'rendezvous/login.html', {'form': form, 'active_page': 'login'})
 
 # define logout view
 def logout_view(request):
