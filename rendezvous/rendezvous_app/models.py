@@ -50,8 +50,8 @@ class Comment(models.Model):
     CommentID = models.AutoField(primary_key=True)
     Content = models.CharField(max_length=280)
     UserID = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-    Upvotes = models.IntegerField()
-    Downvotes = models.IntegerField()
+    Upvotes = models.IntegerField(default=0)  # Add a default value of 0
+    Downvotes = models.IntegerField(default=0)  # Add a default value of 0
     PostID = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):

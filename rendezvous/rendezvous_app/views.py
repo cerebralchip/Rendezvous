@@ -7,11 +7,9 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-
-
 from django.core import serializers
 
-from rendezvous_app.models import Country, Post, Profile
+from rendezvous_app.models import Country, Post, Profile, Comment
 from .forms import UserForm, UserProfileForm, PostForm
 
 import json
@@ -122,10 +120,18 @@ def search_results(request):
     # Add your logic here
     return render(request, 'rendezvous/search_results.html')
 
-# Define the comment view
-def comment(request):
-    # Add your logic here
-    return HttpResponse("This is where comments are handled.")
+def comment(request, post_id):
+    post = get_object_or_404(Post, PostID=post_id)
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content:
+            comment = Comment(
+                Content=content,
+                UserID=request.user,
+                PostID=post
+            )
+            comment.save()
+    return redirect('post_detail', post_id=post_id)
 
 
 ################# API Views #################

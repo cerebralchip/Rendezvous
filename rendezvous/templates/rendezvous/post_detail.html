@@ -33,9 +33,8 @@
                 {% endif %}
 
                 <!-- Add a form to submit new comments -->
-                <form method="post" action="{% url 'comment' %}">
+                <form method="post" action="{% url 'comment' post_id=post.PostID %}">
                     {% csrf_token %}
-                    <input type="hidden" name="post_id" value="{{ post.id }}">
                     <textarea name="content" placeholder="Write a comment"></textarea>
                     <button type="submit">Submit</button>
                 </form>
