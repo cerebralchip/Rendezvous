@@ -25,14 +25,16 @@ def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save()
-            return redirect('post_detail', post_id=post.id)
+            post = form.save(commit=False)
+            post.UserID = request.user
+            post.save()
+            return redirect('post_detail', post_id=post.PostID)  # Use post.PostID instead of post.id
     else:
         form = PostForm()
     return render(request, 'rendezvous/create_post.html', {'form': form})
 
 def post_detail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
+    post = get_object_or_404(Post, PostID=post_id)
     return render(request, 'rendezvous/post_detail.html', {'post': post})
 
 # Define the map view
