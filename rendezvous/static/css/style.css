@@ -256,7 +256,7 @@ body {
   font-size: 4rem;
   z-index: 1050;
   border: none;
-  background-color: #424242;
+  background-color: hsla(0, 0%, 26%, 0);
   color: white;
   display: flex;
   align-items: center;
@@ -297,7 +297,7 @@ body {
 }
 
 .sticky-button:hover {
-  background-color: #606060;
+  background-color: #60606078;
   transform: scale(1.1);
 }
 
