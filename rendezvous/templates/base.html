@@ -30,9 +30,6 @@
                         <a class="nav-link {% if active_page == 'discover' %}active{% endif %}" href="{% url 'discover' %}">Discover</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if active_page == 'resources' %}active{% endif %}" href="{% url 'resources' %}">Travel Resources</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {% if active_page == 'about' %}active{% endif %}" href="{% url 'about' %}">About</a>
                     </li>
                     <form class="d-flex" action="{% url 'search' %}" method="get">
