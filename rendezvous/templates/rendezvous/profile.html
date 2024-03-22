@@ -1,27 +1,56 @@
 {% extends "base.html" %}
-        <section id="user-info">
-            <h1>Hi, {{ user.username }}</h1>
-            <!-- User information goes here -->
-            <p>Name: {{ user.get_full_name }}</p>
-            <p>Email: {{ user.email }}</p>
-            <p>Phone: {{ user.profile.phone }} <!-- Assuming 'phone' is a field in a Profile model related to User -->
-            <p>Country: {{ user.profile.country.country_name }} <!-- Assuming a one-to-one relationship to a Profile model which in turn is related to a Country model -->
-        </section>
-        
 
-        <section id="countries-visited">
-            <h2>Countries Visited</h2>
-            <!-- List of countries visited -->
-            <!-- This could be dynamically generated based on user's data -->
-        </section>
+{% block content %}
+    <section id="user-info">
+        <h1>Hi, {{ user.username }}</h1>
+        <!-- User information goes here -->
+        <p>Name: {{ user.get_full_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Phone: {{ user.profile.phone }}</p> <!-- Assuming 'phone' is a field in a Profile model related to User -->
+        <p>Country: {{ user.profile.LivingInCountryID.CountryName }}</p> <!-- Assuming a one-to-one relationship to a Profile model which in turn is related to a Country model -->
+    </section>
 
-        <section id="latest-posts">
-            <h2>Latest Posts</h2>
-            <!-- Latest posts list -->
-        </section>
+    <section id="countries-visited">
+        <h2>Countries Visited</h2>
+        <!-- List of countries visited -->
+        <ul>
+        {% for country in user.profile.countries_visited.all %}
+            <li>{{ country.CountryName }}</li>
+        {% empty %}
+            <li>No countries visited yet.</li>
+        {% endfor %}
+        </ul>
+    </section>
 
-        <section id="activity">
-            <h2>Activity</h2>
-            <!-- User activity stream -->
-        </section>
+    <section id="latest-posts">
+        <h2>Latest Posts</h2>
+        <!-- Latest posts list -->
+        <ul>
+        {% for post in user.posts.all|slice:":5" %}
+            <li>
+                <h3>{{ post.Title }}</h3>
+                <p>{{ post.Text|truncatewords:20 }}</p>
+                <p>Posted on: {{ post.published_date }}</p>
+            </li>
+        {% empty %}
+            <li>No posts yet.</li>
+        {% endfor %}
+        </ul>
+    </section>
+
+    <section id="activity">
+        <h2>Activity</h2>
+        <!-- User activity stream -->
+        <!-- This could include comments, likes, etc. -->
+        <ul>
+        {% for activity in user.activities.all|slice:":10" %}
+            <li>
+                <p>{{ activity.description }}</p>
+                <p>{{ activity.timestamp }}</p>
+            </li>
+        {% empty %}
+            <li>No recent activity.</li>
+        {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
