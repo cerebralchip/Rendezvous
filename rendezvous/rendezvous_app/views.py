@@ -18,21 +18,7 @@ import json
 
 # Define the home view
 def index(request):
-    # Fetch featured and recent posts from the database
-    featured_posts = Post.objects.filter(is_featured=True).order_by('-published_date')[:3]
-    recent_posts = Post.objects.order_by('-published_date')[:5]
-    # Fetch a list of countries, maybe for a dropdown or list in the UI
-    countries = Country.objects.all()
-    
-    # Construct the context with the fetched data
-    context = {
-        'featured_posts': featured_posts,
-        'recent_posts': recent_posts,
-        'countries': countries
-    }
-    
-    # Render and return the response, passing in the context data
-    return render(request, 'rendezvous/index.html', context)
+    return render(request, 'rendezvous/index.html')
 
 @login_required
 def create_post(request):
@@ -93,9 +79,8 @@ def login_view(request):
 
 # define logout view
 def logout_view(request):
-    if request.method == 'POST':
         logout(request)
-        return redirect('home')
+        return redirect('index')
 
 def register(request):
     registered = False
