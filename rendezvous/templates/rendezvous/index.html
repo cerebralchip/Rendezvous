@@ -18,9 +18,10 @@
       <h2 class="section-title">Featured</h2>
       <hr class="section-separator" />
     </div>
+
     <!--Main carousel-->
     <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
+      <div class="carousel-inner" id="featured_posts_container">
         <div class="carousel-item active">
           <img
             src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -94,6 +95,7 @@
         </button>
       </div>
     </div>
+
     <!-- Recent Posts Section -->
     <div class="container my-5">
       <h2 class="section-title">Recent Posts</h2>
@@ -107,9 +109,7 @@
               class="card-img"
               alt="Post Image"
             />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
+            <div class="card-img-overlay d-flex flex-column justify-content-end">
               <h5 class="card-title">Post Title</h5>
               <p class="card-text">
                 This text represents the blog post description it should be one
@@ -131,9 +131,7 @@
               class="card-img"
               alt="Post Image"
             />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
+            <div class="card-img-overlay d-flex flex-column justify-content-end">
               <h5 class="card-title">Post Title</h5>
               <p class="card-text">
                 This text represents the blog post description it should be one
@@ -155,9 +153,7 @@
               class="card-img"
               alt="Post Image"
             />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
+            <div class="card-img-overlay d-flex flex-column justify-content-end">
               <h5 class="card-title">Post Title</h5>
               <p class="card-text">
                 This text represents the blog post description it should be one
@@ -251,5 +247,6 @@
 
 {% block extra_js %}
 {% load static %}
+<script src="{% static 'js/featured_posts_carousel.js' %}"></script>
 <script src="{% static 'js/map.js' %}"></script>
 {% endblock %}

@@ -165,3 +165,15 @@ def get_recent_posts(request):
 def get_popular_posts(request):
     popular_posts_json = get_posts(['-Upvotes'], 3)
     return HttpResponse(popular_posts_json, content_type='application/json')
+
+# # Get posts with is_featured set to True
+def get_featured_posts(request):
+    # Filter posts with is_featured set to True
+    featured_posts = Post.objects.filter(is_featured=True)
+
+    # Serialize the queryset
+    featured_posts_json = serializers.serialize('json', featured_posts)
+
+    # Return the JSON response
+    return HttpResponse(featured_posts_json, content_type='application/json')
+

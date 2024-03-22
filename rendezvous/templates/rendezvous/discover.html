@@ -8,81 +8,22 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Discover Page Content -->
-    <div class="container my-5" id="discover-feed-container">
-      <h2 class="section-title">Feed</h2>
-      <hr class="section-separator" />
-      <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: '/api/recent-posts/',
-                dataType: 'json',
-                success: function(data) {
-                    data.forEach(function(post) {
-                        // Access the 'fields' property of each post object
-                        var fields = post.fields;
-                        var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust the default image path
-                        var postHtml = '<div class="discover-feed-card">' +
-                                        '<img src="' + pictureUrl + '" class="discover-feed-img" alt="Post Image">' +
-                                        '<div>' +
-                                            '<h5 class="discover-feed-title">' + fields.Title + '</h5>' + 
-                                            '<div class="discover-feed-separator"></div>' +
-                                            '<p class="discover-feed-text">' + fields.Text.substring(0, 100) + '...</p>' +
-                                        '</div>' +
-                                       '</div>';
-        
-                        // Append the new post HTML to the container
-                        $('#discover-feed-container').append(postHtml);
-                    });
-                }
-            });
-        });
-        </script>
+<!-- Discover Page Content -->
+<div class="container my-5" id="discover-feed-container">
+    <h2 class="section-title">Feed</h2>
+    <hr class="section-separator" />
     </div>
     <!-- Popular posts -->
     <div class="container my-5">
       <h2 class="section-title">Popular</h2>
       <hr class="section-separator" />
       <div class="row" id="popular-posts-container">
-        <script>
-          $(document).ready(function() {
-              $.ajax({
-                  url: '/api/popular-posts/', // Adjust this URL to the one you've set up for popular posts
-                  dataType: 'json',
-                  success: function(data) {
-                      data.forEach(function(post) {
-                          var fields = post.fields;
-                          // Construct the URL for the post image
-                          var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust with your default image path
-                          // Format the published date in a more readable format if necessary
-                          var publishedDate = new Date(fields.published_date).toLocaleDateString("en-GB", {
-                              year: 'numeric', month: 'long', day: 'numeric'
-                          });
-                          
-                          var postHtml = 
-                              '<div class="col-md-4">' +
-                                  '<div class="card bg-dark text-white">' +
-                                      '<img src="' + pictureUrl + '" class="card-img" alt="Post Image">' +
-                                      '<div class="card-img-overlay d-flex flex-column justify-content-end">' +
-                                          '<h5 class="card-title">' + fields.Title + '</h5>' + 
-                                          '<p class="card-text">' + fields.Text.substring(0, 100) + '...</p>' + 
-                                          '<hr class="card-inside-separator">' +
-                                          '<p class="card-meta">' +
-                                              '<small>'+ fields.username +'</small><br />' +
-                                              '<small>' + publishedDate + '</small>' +
-                                          '</p>' +
-                                      '</div>' +
-                                  '</div>' +
-                              '</div>';
-          
-                          // Append the constructed HTML to a container, e.g., one with class 'row', id 'popular-posts-container'
-                          $('#popular-posts-container').append(postHtml);});
-                  }
-              });
-          });
-        </script>
       </div>
     </div>
 {% endblock %}
 
-{% block extra_js %}{% endblock %}
+{% block extra_js %}
+{% load static %}
+<script src="{% static 'js/recent_posts.js' %}"></script>
+<script src="{% static 'js/popular_posts.js' %}"></script>
+{% endblock %}
