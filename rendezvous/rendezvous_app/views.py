@@ -158,7 +158,7 @@ def get_posts(order_by, num_posts):
 
 # Get Recent posts as used in discover page
 def get_recent_posts(request):
-    recent_posts_json = get_posts(['-published_date'], 5)
+    recent_posts_json = get_posts(['-published_date'], 3)
     return HttpResponse(recent_posts_json, content_type='application/json')
 
 # Get most popular posts (i.e. posts with the most upvotes)

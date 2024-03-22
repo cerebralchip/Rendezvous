@@ -9,7 +9,7 @@
 
 {% block content %}
 <!-- Discover Page Content -->
-<div class="container my-5" id="discover-feed-container">
+<div class="container my-5" id="recent-posts-container">
     <h2 class="section-title">Feed</h2>
     <hr class="section-separator" />
     </div>
@@ -24,6 +24,6 @@
 
 {% block extra_js %}
 {% load static %}
-<script src="{% static 'js/recent_posts.js' %}"></script>
+<script src="{% static 'js/discover_recent_posts.js' %}"></script>
 <script src="{% static 'js/popular_posts.js' %}"></script>
 {% endblock %}

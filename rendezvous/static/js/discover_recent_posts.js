@@ -17,7 +17,7 @@ $(document).ready(function() {
                                '</div>';
 
                 // Append the new post HTML to the container
-                $('#discover-feed-container').append(postHtml);
+                $('#recent-posts-container').append(postHtml);
             });
         }
     });
