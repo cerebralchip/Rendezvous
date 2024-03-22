@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Country(models.Model):
-    CountryID = models.IntegerField()
+    CountryID = models.AutoField(primary_key=True)
     CountryName = models.CharField(max_length=100)
 
     def __str__(self):
@@ -40,7 +40,7 @@ class Post(models.Model):
         return f"Post ID: {self.PostID}"
 
 class Tag(models.Model):
-    TagID = models.IntegerField()
+    TagID = models.AutoField(primary_key=True)
     TagName = models.CharField(max_length=30)
 
     def __str__(self):
