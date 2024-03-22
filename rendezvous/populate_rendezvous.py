@@ -13,7 +13,7 @@ def populate():
     #  Open geojson file at rendezvous/static/js/Globe.json
     #  Read the file and extract the country names
     #  Create an entry in the Country table for each country name
-    with open('rendezvous/static/js/Globe.json') as f:
+    with open('./static/js/Globe.json') as f:
         data = json.load(f)
         countries = [{'CountryName': feature['properties']['name']} for feature in data['features']]
 
