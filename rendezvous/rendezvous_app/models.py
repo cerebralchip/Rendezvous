@@ -35,6 +35,8 @@ class Post(models.Model):
     Tags = models.ManyToManyField('Tag', related_name='posts')
     is_featured = models.BooleanField(default=False)
     published_date = models.DateTimeField(auto_now_add=True)
+    upvoted_by = models.ManyToManyField(User, related_name='upvoted_posts', blank=True)
+    downvoted_by = models.ManyToManyField(User, related_name='downvoted_posts', blank=True)
 
     def __str__(self):
         return f"Post ID: {self.PostID}"
@@ -50,9 +52,11 @@ class Comment(models.Model):
     CommentID = models.AutoField(primary_key=True)
     Content = models.CharField(max_length=280)
     UserID = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-    Upvotes = models.IntegerField()
-    Downvotes = models.IntegerField()
+    Upvotes = models.IntegerField(default=0)
+    Downvotes = models.IntegerField(default=0)
     PostID = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    upvoted_by = models.ManyToManyField(User, related_name='upvoted_comments', blank=True)
+    downvoted_by = models.ManyToManyField(User, related_name='downvoted_comments', blank=True)
 
     def __str__(self):
         return f"Comment ID: {self.CommentID}"

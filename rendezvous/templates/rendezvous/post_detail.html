@@ -4,7 +4,10 @@
             <h1>{{ post.Text }}</h1>
             <p>Country: {{ post.CountryID.CountryName }}</p>
             <p>Published: {{ post.published_date }}</p>
-            <p>Upvotes: {{ post.Upvotes }} | Downvotes: {{ post.Downvotes }}</p>
+            <p>
+                Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}">{{ post.Upvotes }}</a> |
+                Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}">{{ post.Downvotes }}</a>
+            </p>
             <p>Tags: {% for tag in post.Tags.all %}{{ tag.TagName }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
             {% if post.Picture %}
@@ -23,8 +26,11 @@
                         {% for comment in post.comments.all %}
                             <li>
                                 <p>{{ comment.Content }}</p>
-                                <p>By: {{ comment.UserID.Username }}</p>
-                                <p>Upvotes: {{ comment.Upvotes }} | Downvotes: {{ comment.Downvotes }}</p>
+                                <p>By: {{ comment.UserID.username }}</p>
+                                <p>
+                                    Upvotes: <a href="{% url 'upvote_comment' comment_id=comment.CommentID %}">{{ comment.Upvotes }}</a> |
+                                    Downvotes: <a href="{% url 'downvote_comment' comment_id=comment.CommentID %}">{{ comment.Downvotes }}</a>
+                                </p>
                             </li>
                         {% endfor %}
                     </ul>
@@ -33,9 +39,8 @@
                 {% endif %}
 
                 <!-- Add a form to submit new comments -->
-                <form method="post" action="{% url 'comment' %}">
+                <form method="post" action="{% url 'comment' post_id=post.PostID %}">
                     {% csrf_token %}
-                    <input type="hidden" name="post_id" value="{{ post.id }}">
                     <textarea name="content" placeholder="Write a comment"></textarea>
                     <button type="submit">Submit</button>
                 </form>
