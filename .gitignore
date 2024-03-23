@@ -177,4 +177,3 @@ cython_debug/
 #.idea/
 
 # ignore the contents of media
-media/*
