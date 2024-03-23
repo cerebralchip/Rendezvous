@@ -19,8 +19,9 @@
       <div class="row">
         {% for post in guides_and_tips %}
           <div class="col-md-4">
+            <a href="/post/{{ post.pk}}/">
             <div class="card bg-dark text-white">
-              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
+              <img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" />
               <div class="card-img-overlay d-flex flex-column justify-content-end">
                 <h5 class="card-title">{{ post.Title }}</h5>
                 <p class="card-text">{{ post.Text }}</p>
@@ -31,6 +32,7 @@
                 </p>
               </div>
             </div>
+          </a>
           </div>
         {% endfor %}
       </div>
@@ -42,18 +44,20 @@
       <div class="row">
         {% for post in eats %}
           <div class="col-md-4">
-            <div class="card bg-dark text-white">
-              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
-              <div class="card-img-overlay d-flex flex-column justify-content-end">
-                <h5 class="card-title">{{ post.Title }}</h5>
-                <p class="card-text">{{ post.Text }}</p>
-                <hr class="card-inside-separator" />
-                <p class="card-meta">
-                    <small>{{ post.UserID.username }}</small><br />
-                    <small>{{ post.published_date }}</small>
-                </p>
+            <a href="/post/{{ post.pk}}/">
+              <div class="card bg-dark text-white">
+                <img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" />
+                <div class="card-img-overlay d-flex flex-column justify-content-end">
+                  <h5 class="card-title">{{ post.Title }}</h5>
+                  <p class="card-text">{{ post.Text }}</p>
+                  <hr class="card-inside-separator" />
+                  <p class="card-meta">
+                      <small>{{ post.UserID.username }}</small><br />
+                      <small>{{ post.published_date }}</small>
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         {% endfor %}
       </div>
@@ -65,18 +69,20 @@
       <div class="row">
         {% for post in stays %}
           <div class="col-md-4">
-            <div class="card bg-dark text-white">
-              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
-              <div class="card-img-overlay d-flex flex-column justify-content-end">
-                <h5 class="card-title">{{ post.Title }}</h5>
-                <p class="card-text">{{ post.Text }}</p>
-                <hr class="card-inside-separator" />
-                <p class="card-meta">
-                    <small>{{ post.UserID.username }}</small><br />
-                    <small>{{ post.published_date }}</small>
-                </p>
+            <a href="/post/{{ post.pk}}/">
+              <div class="card bg-dark text-white">
+                <img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" />
+                <div class="card-img-overlay d-flex flex-column justify-content-end">
+                  <h5 class="card-title">{{ post.Title }}</h5>
+                  <p class="card-text">{{ post.Text }}</p>
+                  <hr class="card-inside-separator" />
+                  <p class="card-meta">
+                      <small>{{ post.UserID.username }}</small><br />
+                      <small>{{ post.published_date }}</small>
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         {% endfor %}
       </div>
@@ -88,49 +94,22 @@
       <div class="row">
         {% for post in language %}
           <div class="col-md-4">
-            <div class="card bg-dark text-white">
-              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
-              <div class="card-img-overlay d-flex flex-column justify-content-end">
-                <h5 class="card-title">{{ post.Title }}</h5>
-                <p class="card-text">{{ post.Text }}</p>
-                <hr class="card-inside-separator" />
-                <p class="card-meta">
-                    <small>{{ post.UserID.username }}</small><br />
-                    <small>{{ post.published_date }}</small>
-                </p>
+            <a href="/post/{{ post.pk}}/">
+              <div class="card bg-dark text-white">
+                <img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" />
+                <div class="card-img-overlay d-flex flex-column justify-content-end">
+                  <h5 class="card-title">{{ post.Title }}</h5>
+                  <p class="card-text">{{ post.Text }}</p>
+                  <hr class="card-inside-separator" />
+                  <p class="card-meta">
+                      <small>{{ post.UserID.username }}</small><br />
+                      <small>{{ post.published_date }}</small>
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         {% endfor %}
-      </div>
-    </div>
-    <!-- Explore Section -->
-    <div class="container my-5">
-      <h2 class="section-title">Culture</h2>
-      <hr class="section-separator" />
-      <div class="row explore-row">
-        <div class="col explore-col">
-          <div
-            class="explore-category"
-            id="eco-travel"
-            style="
-              background-image: url('https://images.pexels.com/photos/6271612/pexels-photo-6271612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
-            "
-          >
-            <div class="culture-text">Traditions</div>
-          </div>
-        </div>
-        <div class="col explore-col">
-          <div
-            class="explore-category"
-            id="budget"
-            style="
-              background-image: url('https://images.pexels.com/photos/17302406/pexels-photo-17302406/free-photo-of-palm-tree-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
-            "
-          >
-            <div class="culture-text">History</div>
-          </div>
-        </div>
       </div>
     </div>
 {% endblock %}

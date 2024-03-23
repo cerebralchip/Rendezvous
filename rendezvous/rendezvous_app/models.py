@@ -21,6 +21,13 @@ class Profile(models.Model):
     def __str__(self):
         return self.Username
 
+class Tag(models.Model):
+    TagID = models.AutoField(primary_key=True)
+    TagName = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.TagName
+    
 class Post(models.Model):
     # post id, primary key
     PostID = models.AutoField(primary_key=True)
@@ -32,7 +39,7 @@ class Post(models.Model):
     Upvotes = models.IntegerField(default=0)  # Provide a default value
     Downvotes = models.IntegerField(default=0)  # Provide a default value
     CountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='posts')
-    Tags = models.ManyToManyField('Tag', related_name='posts')
+    Tags = models.ManyToManyField(Tag, related_name='posts')
     is_featured = models.BooleanField(default=False)
     published_date = models.DateTimeField(auto_now_add=True)
     upvoted_by = models.ManyToManyField(User, related_name='upvoted_posts', blank=True)
@@ -41,12 +48,6 @@ class Post(models.Model):
     def __str__(self):
         return f"Post ID: {self.PostID}"
 
-class Tag(models.Model):
-    TagID = models.AutoField(primary_key=True)
-    TagName = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.TagName
 
 class Comment(models.Model):
     CommentID = models.AutoField(primary_key=True)

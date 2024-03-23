@@ -55,6 +55,8 @@ def resources(request, country):
     stays = []
     language = []
     for post in posts:
+        # limit post text to 100 characters
+        post.Text = post.Text[:100] + '...' if len(post.Text) > 100 else post.Text
         if post.Tags.filter(TagName='guides_and_tips').exists():
             if len(guides_and_tips) < 4:
                 guides_and_tips.append(post)
