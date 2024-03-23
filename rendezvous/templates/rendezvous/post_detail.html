@@ -15,7 +15,15 @@
                     Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger post_detail">{{ post.Downvotes }}</a>
                 </small>
             </p>
-            <p class="card-text post_detail"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            <p class="card-text post_detail"><strong>Tags:</strong> 
+                {% for tag in post.Tags.all %}
+                <form method="GET" action="{% url 'search' %}">
+                    <input type="hidden" name="query" value="{{ tag.TagName }}">
+                    <button type="submit" class="badge bg-secondary">{{ tag.TagName }}</button>
+                </form>
+                {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
             
             <div class="post-content mt-4">
                 <p class="card-text post_detail" >{{ post.Text }}</p>

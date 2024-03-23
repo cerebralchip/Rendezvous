@@ -7,75 +7,41 @@
       <h2 class="section-title">About</h2>
       <hr class="section-separator" />
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi laoreet
-        dictum convallis. Sed non arcu mollis velit convallis cursus. Donec
-        ultrices nisl at lacinia blandit. Mauris sit amet tellus sit amet odio
-        laoreet ultricies. Aliquam ac finibus ligula. Pellentesque nec
-        sollicitudin ipsum. Proin dictum nibh orci, in maximus lacus tempus id.
-        Aliquam erat volutpat. Curabitur quis erat tincidunt, hendrerit erat ac,
-        fringilla diam. Etiam congue nunc magna, at tempor velit ultricies nec.
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-        inceptos himenaeos. Etiam tempor nisi egestas felis lobortis tincidunt
-        ac eu sapien. In aliquet eget tellus eu consequat. Sed libero augue,
-        mattis nec pellentesque sit amet, venenatis eu risus. Proin quis
-        malesuada leo. Nam eu odio ac erat accumsan pellentesque a ac felis.
-        Donec sem risus, pellentesque ac odio at, facilisis convallis velit.
-        Integer sit amet lectus rutrum sem congue mollis. Proin sed ligula non
-        ipsum mollis maximus at id lacus. Nam ultrices ante vel ullamcorper
-        ultricies. Vestibulum vestibulum erat ut turpis condimentum, quis
-        venenatis lorem imperdiet. Suspendisse ut nibh quis risus auctor semper
-        ut sed lectus. Aenean nec elit et est venenatis consequat sed nec augue.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec
-        hendrerit eleifend tellus, vel porta risus feugiat nec. Ut nec lobortis
-        nibh, sit amet ultricies nibh. Fusce vulputate vehicula volutpat.
-        Phasellus sodales, diam eu consequat feugiat, mauris felis porta lectus,
-        sit amet maximus felis neque non tellus. Orci varius natoque penatibus
-        et magnis dis parturient montes, nascetur ridiculus mus. Donec nec
-        tellus est. Donec vestibulum finibus tempor. Phasellus non justo justo.
-        Suspendisse facilisis nec urna sit amet convallis. Pellentesque suscipit
-        blandit arcu, nec venenatis sapien condimentum quis. Maecenas interdum
-        dapibus lectus, nec rutrum orci fermentum scelerisque. Nunc magna nulla,
-        sollicitudin a sapien at, sollicitudin lacinia tortor. Etiam eu
-        scelerisque libero. Pellentesque a vestibulum urna. Vestibulum ante
-        ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-        Nulla imperdiet volutpat odio. Aliquam erat volutpat. Duis porta tortor
-        lectus, ut tincidunt sem porttitor sed. Mauris vel arcu nec eros
-        elementum suscipit non et sapien. Aliquam volutpat tincidunt semper.
-        Donec id elementum metus. Integer risus nunc, sollicitudin a nulla
-        tempor, pellentesque laoreet erat. Fusce ultricies arcu sed augue
-        aliquet, nec bibendum mauris fringilla.
+Hello! Welcome to RENDEZVOUS! This is a platform where you can share your travel experiences with others. You can create posts about your trips, add pictures, and tag the countries you visited. You can also search for posts by country, content or tag. Enjoy your stay!
       </p>
-
+      {% load static %}
       <div class="row g-4">
         <div class="col-md-4">
           <img
-            src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src="{% static 'images/Photo Mar 23 180219.jpg' %}"
             class="img-fluid rounded"
-            alt="image description"
+            alt="Alex"
+          />
+        </div>
+        <div class="col-md-4">
+          <img
+            src="{% static 'images/Photo Mar 23 180243.jpg' %}"
+            class="img-fluid rounded"
+            alt="Rapha"
           />
         </div>
         <div class="col-md-4">
           <img
             src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             class="img-fluid rounded"
-            alt="image description"
-          />
-        </div>
-        <div class="col-md-4">
-          <img
-            src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            class="img-fluid rounded"
-            alt="image description"
+            alt="Fernando"
           />
         </div>
       </div>
       <div class="mt-4">
         <h2 class="section-title">Contact</h2>
         <hr class="section-separator" />
-        <p>Contact us at:</p>
-        <p>This is a representation for Contact info:</p>
-        <a href="mailto:contact@contact.com">contact@contact.com</a>
-        <p>555 333 222 111</p>
+        <p>Email us at:</p>
+        <ul>
+          <li><a href="mailto:contact@contact.com">2955238r@student.gla.ac.uk</a></li>
+          <li><a href="mailto:contact@contact.com">22940447t@student.gla.ac.uk</a></li>
+          <li><a href="mailto:contact@contact.com">2592667p@student.gla.ac.uk</a></li>
+        </ul>
       </div>
     </div>
 {% endblock %}

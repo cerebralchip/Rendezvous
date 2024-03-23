@@ -17,6 +17,7 @@ class Profile(models.Model):
     LivingInCountryID = models.ForeignKey(Country, on_delete=models.CASCADE, related_name='living_users')
     Picture = models.ImageField(upload_to='profile_images', blank=True)
     Bio = models.CharField(max_length=500)
+    CountriesVisited = models.ManyToManyField(Country, related_name='countries_visited')
 
     def __str__(self):
         return self.Username

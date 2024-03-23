@@ -34,6 +34,12 @@ def create_post(request):
                     tag, _ = Tag.objects.get_or_create(TagName=tag_name)
                     post.Tags.add(tag)  # Add the tags after saving the post
             
+            # Add the post country to user.countries_visited if country donest already exist
+            user = request.user
+            country = post.CountryID
+            if country not in user.profile.countries_visited.all():
+                user.profile.countries_visited.add(country)
+
             return redirect('post_detail', post_id=post.PostID)
     else:
         form = PostForm()
