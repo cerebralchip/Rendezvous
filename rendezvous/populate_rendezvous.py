@@ -13,7 +13,7 @@ def populate():
     #  Open geojson file at rendezvous/static/js/Globe.json
     #  Read the file and extract the country names
     #  Create an entry in the Country table for each country name
-    with open('./static/js/Globe.json') as f:
+    with open('rendezvous/static/js/Globe.json') as f:
         data = json.load(f)
         countries = [{'CountryName': feature['properties']['name']} for feature in data['features']]
         # sort countries alphabetically by name
@@ -57,6 +57,7 @@ def populate():
         {'PostID': 3, 'UserID_id': 1, 'Picture': 'Screenshot_2024-03-17_at_20.22.35.png', 'Title': 'testing', 'Text': 'Visiting the Eiffel Tower', 'CountryID_id': 3},
         {'PostID': 4, 'UserID_id': 2, 'Picture': 'Screenshot_2024-03-18_at_15.17.31.png', 'Title': '1234', 'Text': 'Hiking in the Scottish Highlands', 'Upvotes':'12', 'CountryID_id': 2, },
         {'PostID': 5, 'UserID_id': 1, 'Picture': '', 'Title': 'foobar','Text': 'Trying sushi in Tokyo', 'CountryID_id': 1},
+        {'PostID': 6, 'UserID_id': 2, 'Picture': 'PXL_20230606_211615824.MP.jpg', 'Title': 'baz', 'Text': 'Exploring the Great Wall of China', 'CountryID_id': 4},
         # Add more posts as needed
     ]
 

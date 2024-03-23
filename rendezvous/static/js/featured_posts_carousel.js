@@ -8,7 +8,7 @@ $(document).ready(function() {
             var fields = firstPost.fields;
             var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust the default image path
             var postHtml = '<div class="carousel-item active">' +
-                            '<img src="' + pictureUrl + '" class="d-block w-100" alt="Post Image"/>' +
+                            '<a href="post/'+ fields.PostID +'/"><img src="' + pictureUrl + '" class="d-block w-100" alt="Post Image"/></a>' +
                                 '<div class="carousel-caption d-none d-md-block">' +
                                     '<div class="caption-background">' +
                                     '<h5>'+ fields.Title +'</h5>' + 
@@ -25,7 +25,7 @@ $(document).ready(function() {
                 var fields = post.fields;
                 var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust the default image path
                 var postHtml = '<div class="carousel-item">' +
-                                '<img src="' + pictureUrl + '" class="d-block w-100" alt="Post Image"/>' +
+                                '<a href="post/'+ fields.PostID +'/"><img src="' + pictureUrl + '" class="d-block w-100" alt="Post Image"/></a>' +
                                     '<div class="carousel-caption d-none d-md-block">' +
                                         '<div class="caption-background">' +
                                         '<h5>'+ fields.Title +'</h5>' + 

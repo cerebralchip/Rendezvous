@@ -13,7 +13,9 @@ $(document).ready(function() {
                 });
                 var postHtml = '<div class="col-md-4">' +
                                     '<div class="card bg-dark text-white">' +
-                                    '<img src="'+ pictureUrl +'" class="card-img" alt="Post Image" />' +
+                                    '<a href="post/'+ fields.PostID +'/">' +
+                                        '<img src="'+ pictureUrl +'" class="card-img" alt="Post Image" />' + 
+                                    '</a>' +
                                         '<div class="card-img-overlay d-flex flex-column justify-content-end">' +
                                             '<h5 class="card-title">'+ fields.Title +'</h5>' + 
                                             '<p class="card-text">' + fields.Text.substring(0, 100) + '...</p>' +

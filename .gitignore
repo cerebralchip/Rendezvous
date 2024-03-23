@@ -176,4 +176,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# ignore the contents of media
+# ignore the contents migrations except init.py
+**/migrations/*
+!**/migrations/__init__.py
