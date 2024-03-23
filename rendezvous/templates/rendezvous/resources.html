@@ -10,97 +10,29 @@
     <h1>Travel Resources - {{ country }}</h1>
   </div>
 
-  {% for post in posts %}
-  {% comment %} write code to check if post.tags includes a variable{% endcomment %}
-  {% if "Guides and Tips" in %}
-  <div class="card bg-dark text-white">
-      <img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" />
-      <div class="card-img-overlay d-flex flex-column justify-content-end">
-          <h5 class="card-title">{{ post.Title }}</h5>
-          <p class="card-text">{{ post.Text }}</p>
-          <hr class="card-inside-separator" />
-          <p class="card-meta">
-              <small>{{ post.UserID.username }}</small><br />
-              <small>{{ post.published_date }}</small>
-          </p>
-      </div>
-  </div>
-{% endfor %}
+
 
     <!-- Guides and Tips -->
     <div class="container my-5">
       <h2 class="section-title">Guides and Tips</h2>
       <hr class="section-separator" />
       <div class="row">
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
+        {% for post in guides_and_tips %}
+          <div class="col-md-4">
+            <div class="card bg-dark text-white">
+              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title">{{ post.Title }}</h5>
+                <p class="card-text">{{ post.Text }}</p>
+                <hr class="card-inside-separator" />
+                <p class="card-meta">
+                    <small>{{ post.UserID.username }}</small><br />
+                    <small>{{ post.published_date }}</small>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
     <!-- Eats -->
@@ -108,75 +40,22 @@
       <h2 class="section-title">Eats</h2>
       <hr class="section-separator" />
       <div class="row">
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
+        {% for post in eats %}
+          <div class="col-md-4">
+            <div class="card bg-dark text-white">
+              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title">{{ post.Title }}</h5>
+                <p class="card-text">{{ post.Text }}</p>
+                <hr class="card-inside-separator" />
+                <p class="card-meta">
+                    <small>{{ post.UserID.username }}</small><br />
+                    <small>{{ post.published_date }}</small>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
     <!-- Stays -->
@@ -184,75 +63,22 @@
       <h2 class="section-title">Stays</h2>
       <hr class="section-separator" />
       <div class="row">
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
+        {% for post in stays %}
+          <div class="col-md-4">
+            <div class="card bg-dark text-white">
+              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title">{{ post.Title }}</h5>
+                <p class="card-text">{{ post.Text }}</p>
+                <hr class="card-inside-separator" />
+                <p class="card-meta">
+                    <small>{{ post.UserID.username }}</small><br />
+                    <small>{{ post.published_date }}</small>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
     <!-- Language -->
@@ -260,75 +86,22 @@
       <h2 class="section-title">Language</h2>
       <hr class="section-separator" />
       <div class="row">
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
+        {% for post in language %}
+          <div class="col-md-4">
+            <div class="card bg-dark text-white">
+              <a href="post/{{ post.PostID}}/"><img src="{{ post.Picture.url }}" class="card-img" alt="Post Image" /></a>
+              <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title">{{ post.Title }}</h5>
+                <p class="card-text">{{ post.Text }}</p>
+                <hr class="card-inside-separator" />
+                <p class="card-meta">
+                    <small>{{ post.UserID.username }}</small><br />
+                    <small>{{ post.published_date }}</small>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-dark text-white">
-            <img
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              class="card-img"
-              alt="Resource Image 1"
-            />
-            <div
-              class="card-img-overlay d-flex flex-column justify-content-end"
-            >
-              <h5 class="card-title">Post Title</h5>
-              <p class="card-text">
-                This text represents the blog post description it should be one
-                or two sentences long.
-              </p>
-              <hr class="card-inside-separator" />
-              <p class="card-meta">
-                <small>Username</small><br />
-                <small>12 February 2024</small>
-              </p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
     <!-- Explore Section -->

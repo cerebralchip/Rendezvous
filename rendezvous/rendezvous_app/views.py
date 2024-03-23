@@ -56,13 +56,17 @@ def resources(request, country):
     language = []
     for post in posts:
         if post.Tags.filter(TagName='guides_and_tips').exists():
-            guides_and_tips.append(post)
+            if len(guides_and_tips) < 4:
+                guides_and_tips.append(post)
         if post.Tags.filter(TagName='eats').exists():
-            eats.append(post)
+            if len(eats) < 4:
+                eats.append(post)
         if post.Tags.filter(TagName='stays').exists():
-            stays.append(post)
+            if len(stays) < 4:
+                stays.append(post)
         if post.Tags.filter(TagName='language').exists():
-            language.append(post)
+            if len(language) < 4:
+                language.append(post)
 
     return render(request, 'rendezvous/resources.html', {'country': country, 'guides_and_tips': guides_and_tips, 'eats': eats, 'stays': stays, 'language': language, 'active_page': 'resources'})
 

@@ -18,7 +18,7 @@ def populate():
         countries = [{'CountryName': feature['properties']['name']} for feature in data['features']]
         # sort countries alphabetically by name
         countries.sort(key=lambda x: x['CountryName'])
-        
+
     for country_data in countries:
         Country.objects.get_or_create(**country_data)
 
