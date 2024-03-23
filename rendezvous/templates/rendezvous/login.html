@@ -14,16 +14,12 @@
               <form method="post" action="{% url 'login' %}">
                   {% csrf_token %}
                   <div class="mb-3">
-                      <label for="id_username" class="form-label">Email</label>
+                      <label for="id_username" class="form-label">Username</label>
                       <input type="text" name="username" class="form-control" id="id_username" required>
                   </div>
                   <div class="mb-3">
                       <label for="id_password" class="form-label">Password</label>
                       <input type="password" name="password" class="form-control" id="id_password" required>
-                  </div>
-                  <div class="d-flex justify-content-between mb-3">
-                      <a href="{% url 'register' %}">Create account</a>
-                      <a href="{% url 'password_reset' %}">Forgot password?</a>
                   </div>
                   <button type="submit" class="btn btn-primary w-100">Log In</button>
               </form>
