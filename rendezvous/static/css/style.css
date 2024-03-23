@@ -514,26 +514,6 @@ main.flex-shrink-0 {
 .post-image {
   max-width: 100%;
   height: auto;
-<<<<<<< HEAD
-  transition: transform 0.3s ease;
-}
-
-.image-controls {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.card-body {
-  background-color: #f8f9fa;
-  color: #333;
-}
-
-.card-title,
-.card-text,
-.card-meta {
-  color: #fff;
-=======
->>>>>>> dccc4170d8b7c43ff51326af6186c3ed0b60d260
 }
 
 .post-content {
