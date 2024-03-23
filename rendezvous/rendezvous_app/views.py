@@ -86,10 +86,16 @@ def resources(request, country):
 
     return render(request, 'rendezvous/resources.html', {'country': country, 'guides_and_tips': guides_and_tips, 'eats': eats, 'stays': stays, 'language': language, 'active_page': 'resources'})
 
-# Define the profile view
-def profile(request):
-    # Add your logic here
-    return render(request, 'rendezvous/profile.html')
+def profile(request, user_id=None):
+    if user_id is not None:
+        user = get_object_or_404(User, pk=user_id)
+    else:
+        user = request.user
+    profile = get_object_or_404(Profile, user=user)
+    return render(request, 'profile.html', {'profile': profile})
+
+def current_user_profile(request):
+    return render(request, 'profile.html')
 
 # Define the settings view
 def settings(request):

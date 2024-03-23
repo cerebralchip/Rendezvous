@@ -5,7 +5,7 @@
         <h1>Hi, {{ user.username }}</h1>
         <!-- User information goes here -->
         <p>Email: {{ user.email }}</p>
-        <p>Country: <a href="/resources/{{ user.profile.LivingInCountryID.CountryName }}">{{ user.profile.LivingInCountryID.CountryName }}</a></p> <!-- Assuming a one-to-one relationship to a Profile model which in turn is related to a Country model -->
+        <p>Country: {{ user.profile.LivingInCountryID.CountryName }}</p> <!-- Assuming a one-to-one relationship to a Profile model which in turn is related to a Country model -->
     </section>
 
     <section id="countries-visited">

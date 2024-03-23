@@ -34,7 +34,8 @@ urlpatterns = [
     path("discover/", views.discover, name="discover"),
     path("resources/<str:country>", views.resources, name="resources"),
 
-    path('accounts/profile/', views.profile, name='profile'),
+    path('accounts/<int:user_id>/', views.profile, name='profile_with_id'),
+    path('accounts/profile/', views.current_user_profile, name='profile'),
 
     path("settings/", views.settings, name="settings"),
     path("about/", views.about, name="about"),
