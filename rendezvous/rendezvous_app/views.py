@@ -168,7 +168,13 @@ def upvote_post(request, post_id):
     user = request.user
 
     if user.is_authenticated:
-        if user not in post.upvoted_by.all():
+        if user in post.upvoted_by.all():
+            post.Upvotes -= 1
+            post.upvoted_by.remove(user)
+        else:
+            if user in post.downvoted_by.all():
+                post.Downvotes -= 1
+                post.downvoted_by.remove(user)
             post.Upvotes += 1
             post.upvoted_by.add(user)
         post.save()
@@ -180,7 +186,13 @@ def downvote_post(request, post_id):
     user = request.user
 
     if user.is_authenticated:
-        if user not in post.downvoted_by.all():
+        if user in post.downvoted_by.all():
+            post.Downvotes -= 1
+            post.downvoted_by.remove(user)
+        else:
+            if user in post.upvoted_by.all():
+                post.Upvotes -= 1
+                post.upvoted_by.remove(user)
             post.Downvotes += 1
             post.downvoted_by.add(user)
         post.save()
@@ -192,7 +204,13 @@ def upvote_comment(request, comment_id):
     user = request.user
 
     if user.is_authenticated:
-        if user not in comment.upvoted_by.all():
+        if user in comment.upvoted_by.all():
+            comment.Upvotes -= 1
+            comment.upvoted_by.remove(user)
+        else:
+            if user in comment.downvoted_by.all():
+                comment.Downvotes -= 1
+                comment.downvoted_by.remove(user)
             comment.Upvotes += 1
             comment.upvoted_by.add(user)
         comment.save()
@@ -204,7 +222,13 @@ def downvote_comment(request, comment_id):
     user = request.user
 
     if user.is_authenticated:
-        if user not in comment.downvoted_by.all():
+        if user in comment.downvoted_by.all():
+            comment.Downvotes -= 1
+            comment.downvoted_by.remove(user)
+        else:
+            if user in comment.upvoted_by.all():
+                comment.Upvotes -= 1
+                comment.upvoted_by.remove(user)
             comment.Downvotes += 1
             comment.downvoted_by.add(user)
         comment.save()
