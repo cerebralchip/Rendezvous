@@ -10,7 +10,7 @@
             </a>
             <p class="card-text post_detail"><strong>Published:</strong> {{ post.published_date }}</p>
             <p class="card-meta post_detail">
-                <small>
+                <small style="color: black;">
                     Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}" class="btn btn-outline-primary post_detail">{{ post.Upvotes }}</a> |
                     Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger post_detail">{{ post.Downvotes }}</a>
                 </small>
