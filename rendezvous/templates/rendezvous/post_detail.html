@@ -5,7 +5,9 @@
     <article class="card mb-4">
         <div class="card-body">
             <h1 class="card-title section-title post_detail">{{ post.Title }}</h1>
-            <p class="card-text post_detail"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
+            <a href="/resources/{{ post.CountryID.CountryName }}">
+                <p class="card-text post_detail"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
+            </a>
             <p class="card-text post_detail"><strong>Published:</strong> {{ post.published_date }}</p>
             <p class="card-meta post_detail">
                 <small>

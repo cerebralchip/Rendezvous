@@ -40,7 +40,7 @@ def populate():
 
     # Create tags
     tags = [
-        {'TagName': 'guides_and_tips'},
+        {'TagName': 'guides and tips'},
         {'TagName': 'eats'},
         {'TagName': 'stays'},
         {'TagName': 'language'},
@@ -70,7 +70,7 @@ def populate():
             'CountryID__CountryName': 'United Kingdom',
             'is_featured': True,
             'Tags' : [
-            {'TagName': 'guides_and_tips'}, 
+            {'TagName': 'guides and tips'}, 
             ]
         },
         {
@@ -84,7 +84,7 @@ def populate():
             'CountryID__CountryName': 'United Kingdom',
             'is_featured': True,
             'Tags' : [
-            {'TagName': 'guides_and_tips'},
+            {'TagName': 'guides and tips'},
             {'TagName': 'eats'}, 
             ]
         },
@@ -102,7 +102,7 @@ def populate():
                     its vast landscapes, indulge in its culinary delights, and immerse oneself in its rich cultural tapestry.""", 
             'CountryID__CountryName': 'Mexico',
             'Tags' : [
-            {'TagName': 'guides_and_tips'}, 
+            {'TagName': 'guides and tips'}, 
             ]
         },
         {
@@ -120,7 +120,7 @@ def populate():
             'Upvotes':'12',
             'CountryID__CountryName': 'Greece',
             'Tags' : [
-            {'TagName': 'guides_and_tips'}, 
+            {'TagName': 'guides and tips'}, 
             ]
         },
         {
@@ -138,7 +138,7 @@ def populate():
                     villages, indulge in its gourmet offerings, and immerse oneself in the joie de vivre that radiates from every corner of this splendid country.""",
             'CountryID__CountryName': 'France',
             'Tags' : [
-            {'TagName': 'guides_and_tips'}, 
+            {'TagName': 'guides and tips'}, 
             ]
         },
         {
@@ -155,7 +155,7 @@ def populate():
                     pot of cuisines and cultures, all coexisting in harmony on this futuristic island.""",
             'CountryID__CountryName': 'Singapore',
             'Tags' : [
-            {'TagName': 'guides_and_tips'}, 
+            {'TagName': 'guides and tips'}, 
             ]
         },
         {
@@ -171,7 +171,7 @@ def populate():
                     from the desert's serene expanse to the bustling urban scenes and serene coastal towns, each with stories to tell and mysteries to unveil.""",
             'CountryID__CountryName': 'Australia',
             'Tags' : [
-            {'TagName': 'guides_and_tips'}, 
+            {'TagName': 'guides and tips'}, 
             ]
         }
         # Add more posts as needed

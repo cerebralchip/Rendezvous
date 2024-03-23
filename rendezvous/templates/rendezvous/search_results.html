@@ -1,4 +1,43 @@
 <!-- extends base.html -->
 {% extends "base.html" %}
+
 {% block title %}Search Results{% endblock %}
+
 {% block content %}
+<h1 class="section-title">Search Results for: {{ query }}</h1>
+{% if posts %}
+    {% for post in posts %}
+        <article class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title section-title post_detail">{{ post.Title }}</h2>
+                <a href="/resources/{{ post.CountryID.CountryName }}">
+                    <p class="card-text post_detail"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
+                </a>
+                <p class="card-text post_detail"><strong>Published:</strong> {{ post.published_date }}</p>
+                <p class="card-meta post_detail">
+                    <small>
+                        Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}" class="btn btn-outline-primary post_detail">{{ post.Upvotes }}</a> |
+                        Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger post_detail">{{ post.Downvotes }}</a>
+                    </small>
+                </p>
+                <p class="card-text post_detail"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                
+                <div class="post-content mt-4">
+                    <p class="card-text post_detail" >{{ post.Text }}</p>
+                    {% if post.Picture %}
+                        <div class="image-container">
+                            <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid post-image">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+{% else %}
+<!-- no results found :( -->
+<p>No Results Found :(</p>
+{% endif %}
+
+
+
+{% endblock %}

@@ -144,13 +144,19 @@ def country(request):
 def search(request):
     # get querystring from request
     query = request.GET.get('query')
+
     posts = []
     # if query is not empty
     if query:
+        
+        # if query is a match for a country name, redirect to resources page
+        country = Country.objects.filter(CountryName__icontains=query)
+        if country:
+            url = '/resources/' + country[0].CountryName
+            return redirect(url)
+
         # get posts with tags containing query lowercase
         posts = Post.objects.filter(Tags__TagName__icontains=query.lower())
-        # append posts with country name containing query
-        posts = posts | Post.objects.filter(CountryID__CountryName__icontains=query)
         # append posts with title or text containing query
         posts = posts | Post.objects.filter(Title__icontains=query) | Post.objects.filter(Text__icontains=query)
         
