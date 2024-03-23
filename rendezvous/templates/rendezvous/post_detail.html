@@ -16,17 +16,12 @@
             <p class="card-text"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             
             <div class="post-content mt-4">
+                <p class="card-text">{{ post.Text }}</p>
                 {% if post.Picture %}
-                    <div class="image-controls">
-                        <button class="btn btn-sm btn-outline-secondary" id="zoom-in">+</button>
-                        <button class="btn btn-sm btn-outline-secondary" id="zoom-out">-</button>
-                    </div>
                     <div class="image-container">
                         <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid post-image">
                     </div>
                 {% endif %}
-
-                <p class="card-text">{{ post.Text }}</p>
             </div>
         </div>
     </article>
@@ -70,24 +65,4 @@
 {% block extra_js %}
 {% load static %}
 <script src="{% static 'js/show_comments.js' %}"></script>
-<script>
-    const zoomInBtn = document.getElementById('zoom-in');
-    const zoomOutBtn = document.getElementById('zoom-out');
-    const postImage = document.querySelector('.post-image');
-
-    let currentScale = 1;
-    const scaleStep = 0.1;
-
-    zoomInBtn.addEventListener('click', () => {
-        currentScale += scaleStep;
-        postImage.style.transform = `scale(${currentScale})`;
-    });
-
-    zoomOutBtn.addEventListener('click', () => {
-        if (currentScale > scaleStep) {
-            currentScale -= scaleStep;
-            postImage.style.transform = `scale(${currentScale})`;
-        }
-    });
-</script>
 {% endblock %}
