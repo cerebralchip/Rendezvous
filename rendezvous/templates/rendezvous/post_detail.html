@@ -16,7 +16,7 @@
             <p class="card-text post_detail"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             
             <div class="post-content mt-4">
-                <p class="card-text">{{ post.Text }}</p>
+                <p class="card-text post_detail" >{{ post.Text }}</p>
                 {% if post.Picture %}
                     <div class="image-container">
                         <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid post-image">
