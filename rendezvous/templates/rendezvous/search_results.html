@@ -9,17 +9,14 @@
     {% for post in posts %}
         <article class="card mb-4">
             <div class="card-body">
+
+            <a href="/post/{{ post.PostID }}">
                 <h2 class="card-title section-title post_detail">{{ post.Title }}</h2>
+            </a>
                 <a href="/resources/{{ post.CountryID.CountryName }}">
                     <p class="card-text post_detail"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
                 </a>
                 <p class="card-text post_detail"><strong>Published:</strong> {{ post.published_date }}</p>
-                <p class="card-meta post_detail">
-                    <small>
-                        Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}" class="btn btn-outline-primary post_detail">{{ post.Upvotes }}</a> |
-                        Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger post_detail">{{ post.Downvotes }}</a>
-                    </small>
-                </p>
                 <p class="card-text post_detail"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
                 
                 <div class="post-content mt-4">
