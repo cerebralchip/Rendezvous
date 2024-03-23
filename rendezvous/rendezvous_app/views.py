@@ -65,13 +65,13 @@ def resources(request, country):
     for post in posts:
         # limit post text to 100 characters
         post.Text = post.Text[:100] + '...' if len(post.Text) > 100 else post.Text
-        if post.Tags.filter(TagName='guides_and_tips').exists():
+        if post.Tags.filter(TagName='guides and tips').exists():
             if len(guides_and_tips) < 4:
                 guides_and_tips.append(post)
-        if post.Tags.filter(TagName='eats').exists():
+        if post.Tags.filter(TagName='eats').exists() or post.Tags.filter(TagName='food').exists() or post.Tags.filter(TagName='restaurant').exists() or post.Tags.filter(TagName='cafe').exists() or post.Tags.filter(TagName='bar').exists() or post.Tags.filter(TagName='pub').exists() or post.Tags.filter(TagName='street food').exists() or post.Tags.filter(TagName='market').exists() or post.Tags.filter(TagName='bakery').exists() or post.Tags.filter(TagName='grocery').exists() or post.Tags.filter(TagName='supermarket').exists() or post.Tags.filter(TagName='food truck').exists() or post.Tags.filter(TagName='food court').exists() or post.Tags.filter(TagName='food stall').exists():
             if len(eats) < 4:
                 eats.append(post)
-        if post.Tags.filter(TagName='stays').exists():
+        if post.Tags.filter(TagName='stays').exists() or post.Tags.filter(TagName='accommodation').exists() or post.Tags.filter(TagName='lodging').exists() or post.Tags.filter(TagName='hotel').exists() or post.Tags.filter(TagName='hostel').exists() or post.Tags.filter(TagName='bnb').exists() or post.Tags.filter(TagName='airbnb').exists() or post.Tags.filter(TagName='couchsurfing').exists() or post.Tags.filter(TagName='camping').exists() or post.Tags.filter(TagName='glamping').exists() or post.Tags.filter(TagName='resort').exists() or post.Tags.filter(TagName='motel').exists() or post.Tags.filter(TagName='inn').exists() or post.Tags.filter(TagName='guesthouse').exists() or post.Tags.filter(TagName='apartment').exists() or post.Tags.filter(TagName='villa').exists():
             if len(stays) < 4:
                 stays.append(post)
         if post.Tags.filter(TagName='language').exists():
@@ -142,8 +142,19 @@ def country(request):
 
 # Define the search view
 def search(request):
-    # Add your logic here
-    return render(request, 'rendezvous/search.html')
+    # get querystring from request
+    query = request.GET.get('query')
+    posts = []
+    # if query is not empty
+    if query:
+        # get posts with tags containing query lowercase
+        posts = Post.objects.filter(Tags__TagName__icontains=query.lower())
+        # append posts with country name containing query
+        posts = posts | Post.objects.filter(CountryID__CountryName__icontains=query)
+        # append posts with title or text containing query
+        posts = posts | Post.objects.filter(Title__icontains=query) | Post.objects.filter(Text__icontains=query)
+        
+    return render(request, 'rendezvous/search_results.html', {'posts': posts, 'query': query})
 
 # Define the search_results view
 def search_results(request):

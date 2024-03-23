@@ -252,15 +252,17 @@ body {
   right: 150px;
   width: 150px;
   height: 150px;
-  border-radius: 50%;
+  border-radius: 10%;
   font-size: 4rem;
   z-index: 1050;
   border: none;
-  background-color: hsla(0, 0%, 26%, 0);
+  background-color: #333333;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* add slight padding to the picture content */
+  padding: 30px;
   transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -297,7 +299,7 @@ body {
 }
 
 .sticky-button:hover {
-  background-color: #60606078;
+  background-color: #3333339a;
   transform: scale(1.1);
 }
 
