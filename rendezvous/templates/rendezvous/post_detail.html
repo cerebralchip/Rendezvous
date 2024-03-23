@@ -15,18 +15,22 @@
             </p>
             <p class="card-text post_detail"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             
+<<<<<<< HEAD
             <div class="post-content mt-4 post_detail">
+=======
+            <div class="post-content mt-4">
+                <p class="card-text">{{ post.Text }}</p>
+>>>>>>> dccc4170d8b7c43ff51326af6186c3ed0b60d260
                 {% if post.Picture %}
-                    <div class="image-controls">
-                        <button class="btn btn-sm btn-outline-secondary" id="zoom-in">+</button>
-                        <button class="btn btn-sm btn-outline-secondary" id="zoom-out">-</button>
-                    </div>
                     <div class="image-container">
                         <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid post-image">
                     </div>
                 {% endif %}
+<<<<<<< HEAD
 
                 <p class="card-text post_detail">{{ post.Text }}</p>
+=======
+>>>>>>> dccc4170d8b7c43ff51326af6186c3ed0b60d260
             </div>
         </div>
     </article>
@@ -70,24 +74,4 @@
 {% block extra_js %}
 {% load static %}
 <script src="{% static 'js/show_comments.js' %}"></script>
-<script>
-    const zoomInBtn = document.getElementById('zoom-in');
-    const zoomOutBtn = document.getElementById('zoom-out');
-    const postImage = document.querySelector('.post-image');
-
-    let currentScale = 1;
-    const scaleStep = 0.1;
-
-    zoomInBtn.addEventListener('click', () => {
-        currentScale += scaleStep;
-        postImage.style.transform = `scale(${currentScale})`;
-    });
-
-    zoomOutBtn.addEventListener('click', () => {
-        if (currentScale > scaleStep) {
-            currentScale -= scaleStep;
-            postImage.style.transform = `scale(${currentScale})`;
-        }
-    });
-</script>
 {% endblock %}

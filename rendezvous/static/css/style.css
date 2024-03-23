@@ -120,6 +120,7 @@ body {
   right: 0;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .row.g-4 {
@@ -483,6 +484,8 @@ main.flex-shrink-0 {
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 0.25rem;
+  clear: both;
+  padding-top: 20px;
 }
 
 .comment-content {
@@ -506,12 +509,12 @@ main.flex-shrink-0 {
 .image-container {
   text-align: center;
   margin-bottom: 1rem;
-  display: flex;
 }
 
 .post-image {
   max-width: 100%;
   height: auto;
+<<<<<<< HEAD
   transition: transform 0.3s ease;
 }
 
@@ -529,6 +532,8 @@ main.flex-shrink-0 {
 .card-text,
 .card-meta {
   color: #fff;
+=======
+>>>>>>> dccc4170d8b7c43ff51326af6186c3ed0b60d260
 }
 
 .post-content {
