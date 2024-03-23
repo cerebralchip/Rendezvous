@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 from django.core import serializers
 
-from rendezvous_app.models import Country, Post, Profile, Comment
+from rendezvous_app.models import Country, Post, Profile, Comment, Tag
 from .forms import UserForm, UserProfileForm, PostForm
 
 import json
@@ -25,8 +25,16 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.UserID = request.user
-            post.save()
-            return redirect('post_detail', post_id=post.PostID)  # Use post.PostID instead of post.id
+            post.save()  # Save the post to generate the PostID
+            
+            new_tags = form.cleaned_data.get('new_tags', '').split(',')
+            for tag_name in new_tags:
+                tag_name = tag_name.strip()
+                if tag_name:
+                    tag, _ = Tag.objects.get_or_create(TagName=tag_name)
+                    post.Tags.add(tag)  # Add the tags after saving the post
+            
+            return redirect('post_detail', post_id=post.PostID)
     else:
         form = PostForm()
     return render(request, 'rendezvous/create_post.html', {'form': form})

@@ -1,13 +1,21 @@
 from django import forms
-from .models import Post, Profile
+from .models import Post, Profile, Tag
 from django.contrib.auth.models import User
 
 class PostForm(forms.ModelForm):
-    Text = forms.CharField(label='Post Content')
-    
+    new_tags = forms.CharField(label='New Tags', required=False, help_text='Enter comma-separated tags')
+
     class Meta:
         model = Post
-        fields = ['Picture', 'Title', 'Text', 'CountryID', 'Tags']
+        fields = ['Picture', 'Text', 'CountryID', 'Tags', 'new_tags']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['Tags'].required = False
+
+    def save(self, commit=True):
+        post = super().save(commit=commit)
+        return post
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())

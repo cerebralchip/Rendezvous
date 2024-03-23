@@ -48,7 +48,6 @@ class Post(models.Model):
     def __str__(self):
         return f"Post ID: {self.PostID}"
 
-
 class Comment(models.Model):
     CommentID = models.AutoField(primary_key=True)
     Content = models.CharField(max_length=280)
