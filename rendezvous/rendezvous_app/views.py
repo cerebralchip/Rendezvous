@@ -220,7 +220,6 @@ def get_posts(order_by, num_posts):
     posts_data = json.loads(posts_json)
 
     for post in posts_data:
-        print(post)
         user_id = post['fields']['UserID']
         user = User.objects.get(id=user_id)
         username = user.username

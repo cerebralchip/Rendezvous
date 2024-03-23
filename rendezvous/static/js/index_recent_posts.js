@@ -13,7 +13,7 @@ $(document).ready(function() {
                 });
                 var postHtml = '<div class="col-md-4">' +
                                     '<div class="card bg-dark text-white">' +
-                                    ç
+                                        '<a href="post/'+ post.pk +'/">' +
                                         '<img src="'+ pictureUrl +'" class="card-img" alt="Post Image" />' + 
                                         '<div class="card-img-overlay d-flex flex-column justify-content-end">' +
                                             '<h5 class="card-title">'+ fields.Title +'</h5>' + 

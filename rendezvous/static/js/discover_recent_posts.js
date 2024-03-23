@@ -7,14 +7,18 @@ $(document).ready(function() {
                 // Access the 'fields' property of each post object
                 var fields = post.fields;
                 var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust the default image path
-                var postHtml = '<div class="discover-feed-card">' +
+                
+                var postHtml =  
+                '<a href="/post/'+ post.pk +'">' + 
+                '<div class="discover-feed-card">' +
                                 '<img src="' + pictureUrl + '" class="discover-feed-img" alt="Post Image">' +
                                 '<div>' +
-                                    '<h5 class="discover-feed-title">' + fields.Title + '</h5>' + 
-                                    '<div class="discover-feed-separator"></div>' +
-                                    '<p class="discover-feed-text">' + fields.Text.substring(0, 100) + '...</p>' +
+                                '<h5 class="discover-feed-title">' + fields.Title + '</h5>' + 
+                                '<div class="discover-feed-separator"></div>' +
+                                '<p class="discover-feed-text">' + fields.Text.substring(0, 100) + '...</p>' +
                                 '</div>' +
-                               '</div>';
+                                '</div>';
+                                '</a>' +
 
                 // Append the new post HTML to the container
                 $('#recent-posts-container').append(postHtml);
