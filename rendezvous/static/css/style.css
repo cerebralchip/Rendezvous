@@ -131,18 +131,18 @@ body {
 }
 
 .card-title {
-  color: #333;
+  color: #fff;
   font-size: 1.25rem;
   font-weight: bold;
 }
 
 .card-text {
-  color: #333;
+  color: #fff;
   font-size: 0.875rem;
 }
 
 .card-meta small {
-  color: #333;
+  color: #fff;
   font-size: 0.75rem;
 }
 
@@ -528,9 +528,14 @@ main.flex-shrink-0 {
 .card-title,
 .card-text,
 .card-meta {
-  color: #333;
+  color: #fff;
 }
 
 .post-content {
-  color: #333;
+  color: #fff;
+}
+
+.post_detail{
+  /* text colour black */
+  color: #000;
 }

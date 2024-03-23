@@ -4,18 +4,18 @@
 <div class="container py-5">
     <article class="card mb-4">
         <div class="card-body">
-            <h1 class="card-title section-title">{{ post.Title }}</h1>
-            <p class="card-text"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
-            <p class="card-text"><strong>Published:</strong> {{ post.published_date }}</p>
-            <p class="card-meta">
+            <h1 class="card-title section-title post_detail">{{ post.Title }}</h1>
+            <p class="card-text post_detail"><strong>Country:</strong> {{ post.CountryID.CountryName }}</p>
+            <p class="card-text post_detail"><strong>Published:</strong> {{ post.published_date }}</p>
+            <p class="card-meta post_detail">
                 <small>
-                    Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}" class="btn btn-outline-primary">{{ post.Upvotes }}</a> |
-                    Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger">{{ post.Downvotes }}</a>
+                    Upvotes: <a href="{% url 'upvote_post' post_id=post.PostID %}" class="btn btn-outline-primary post_detail">{{ post.Upvotes }}</a> |
+                    Downvotes: <a href="{% url 'downvote_post' post_id=post.PostID %}" class="btn btn-outline-danger post_detail">{{ post.Downvotes }}</a>
                 </small>
             </p>
-            <p class="card-text"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            <p class="card-text post_detail"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             
-            <div class="post-content mt-4">
+            <div class="post-content mt-4 post_detail">
                 {% if post.Picture %}
                     <div class="image-controls">
                         <button class="btn btn-sm btn-outline-secondary" id="zoom-in">+</button>
@@ -26,7 +26,7 @@
                     </div>
                 {% endif %}
 
-                <p class="card-text">{{ post.Text }}</p>
+                <p class="card-text post_detail">{{ post.Text }}</p>
             </div>
         </div>
     </article>
