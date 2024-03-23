@@ -15,11 +15,17 @@
             </p>
             <p class="card-text"><strong>Tags:</strong> {% for tag in post.Tags.all %}<span class="badge bg-secondary">{{ tag.TagName }}</span>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
             
-            {% if post.Picture %}
-                <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid">
-            {% endif %}
-
             <div class="post-content mt-4">
+                {% if post.Picture %}
+                    <div class="image-controls">
+                        <button class="btn btn-sm btn-outline-secondary" id="zoom-in">+</button>
+                        <button class="btn btn-sm btn-outline-secondary" id="zoom-out">-</button>
+                    </div>
+                    <div class="image-container">
+                        <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid post-image">
+                    </div>
+                {% endif %}
+
                 <p class="card-text">{{ post.Text }}</p>
             </div>
         </div>
@@ -30,10 +36,10 @@
         {% if post.comments.all %}
             <ul class="list-group list-group-flush">
                 {% for comment in post.comments.all %}
-                    <li class="list-group-item">
-                        <p>{{ comment.Content }}</p>
-                        <p><strong>By:</strong> {{ comment.UserID.username }}</p>
-                        <p>
+                    <li class="list-group-item comment-item">
+                        <p class="comment-content">{{ comment.Content }}</p>
+                        <p class="comment-author"><strong>By:</strong> {{ comment.UserID.username }}</p>
+                        <p class="comment-votes">
                             Upvotes: <a href="{% url 'upvote_comment' comment_id=comment.CommentID %}" class="btn btn-sm btn-outline-primary">{{ comment.Upvotes }}</a> |
                             Downvotes: <a href="{% url 'downvote_comment' comment_id=comment.CommentID %}" class="btn btn-sm btn-outline-danger">{{ comment.Downvotes }}</a>
                         </p>
@@ -43,23 +49,45 @@
         {% else %}
             <p>No comments yet.</p>
         {% endif %}
-                <!-- Add a form to submit new comments -->
-                <form method="post" action="{% url 'comment' post_id=post.PostID %}">
-                    {% csrf_token %}
-                    <textarea name="content" placeholder="Write a comment"></textarea>
-                    <button type="submit">Submit</button>
-                </form>
 
-                <div id="comments-container">
-                    <!-- Comments will be displayed here -->
-                </div>
+        <!-- Add a form to submit new comments -->
+        <form method="post" action="{% url 'comment' post_id=post.PostID %}" class="comment-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="content" class="form-control" placeholder="Write a comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
-            </section>
-        </article>
+        <div id="comments-container">
+            <!-- Comments will be displayed here -->
+        </div>
+
+    </section>
+</div>
 {% endblock %}
 
 {% block extra_js %}
 {% load static %}
 <script src="{% static 'js/show_comments.js' %}"></script>
+<script>
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const postImage = document.querySelector('.post-image');
 
+    let currentScale = 1;
+    const scaleStep = 0.1;
+
+    zoomInBtn.addEventListener('click', () => {
+        currentScale += scaleStep;
+        postImage.style.transform = `scale(${currentScale})`;
+    });
+
+    zoomOutBtn.addEventListener('click', () => {
+        if (currentScale > scaleStep) {
+            currentScale -= scaleStep;
+            postImage.style.transform = `scale(${currentScale})`;
+        }
+    });
+</script>
 {% endblock %}

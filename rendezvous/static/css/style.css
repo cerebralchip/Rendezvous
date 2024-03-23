@@ -131,18 +131,18 @@ body {
 }
 
 .card-title {
-  color: #fff;
+  color: #333;
   font-size: 1.25rem;
   font-weight: bold;
 }
 
 .card-text {
-  color: #fff;
+  color: #333;
   font-size: 0.875rem;
 }
 
 .card-meta small {
-  color: #fff;
+  color: #333;
   font-size: 0.75rem;
 }
 
@@ -475,3 +475,62 @@ main.flex-shrink-0 {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #333;}
+
+
+/* stuff for the comments and image controls*/
+.comment-item {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.comment-content {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.comment-author {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.comment-votes {
+  font-size: 0.8rem;
+}
+
+.comment-form {
+  margin-top: 2rem;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.image-controls {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.card-title,
+.card-text,
+.card-meta {
+  color: #333;
+}
+
+.post-content {
+  color: #333;
+}
