@@ -13,12 +13,12 @@ def populate():
     #  Open geojson file at rendezvous/static/js/Globe.json
     #  Read the file and extract the country names
     #  Create an entry in the Country table for each country name
-    with open('rendezvous/static/js/Globe.json') as f:
+    with open('./static/js/Globe.json') as f:
         data = json.load(f)
         countries = [{'CountryName': feature['properties']['name']} for feature in data['features']]
         # sort countries alphabetically by name
         countries.sort(key=lambda x: x['CountryName'])
-
+        
     for country_data in countries:
         Country.objects.get_or_create(**country_data)
 
@@ -52,18 +52,10 @@ def populate():
     # Create posts
     posts = [
         # Generate 5 example posts
-<<<<<<< HEAD
-        {'PostID': 1, 'UserID_id': 1, 'Picture': 'Screenshot_2024-03-02_at_17.27.57_7W7smpP.png', 'Title': 'Hello', 'Text': 'Exploring the Grand Canyon', 'CountryID_id': 1, 'is_featured': True},
-        {'PostID': 2, 'UserID_id': 2, 'Picture': 'Screenshot_2024-03-02_at_17.27.57.png', 'Title': 'World', 'Text': 'Eating fish and chips in London', 'Upvotes':'4', 'CountryID_id': 2, 'is_featured': True},
-        {'PostID': 3, 'UserID_id': 1, 'Picture': 'Screenshot_2024-03-17_at_20.22.35.png', 'Title': 'testing', 'Text': 'Visiting the Eiffel Tower', 'CountryID_id': 3},
-        {'PostID': 4, 'UserID_id': 2, 'Picture': 'Screenshot_2024-03-18_at_15.17.31.png', 'Title': '1234', 'Text': 'Hiking in the Scottish Highlands', 'Upvotes':'12', 'CountryID_id': 2, },
-        {'PostID': 5, 'UserID_id': 1, 'Picture': '', 'Title': 'foobar','Text': 'Trying sushi in Tokyo', 'CountryID_id': 1},
-        {'PostID': 6, 'UserID_id': 2, 'Picture': 'PXL_20230606_211615824.MP.jpg', 'Title': 'baz', 'Text': 'Exploring the Great Wall of China', 'CountryID_id': 4},
-=======
         {
             'PostID': 1,
             'UserID_id': 1,
-            'Picture': 'Screenshot_2024-03-02_at_17.27.57_7W7smpP.png', 
+            'Picture': 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
             'Title': 'An Unforgettable Journey Through England: From Historical Landmarks to Natural Splendors', 
             'Text': """Embark on a journey through England, where each step tells a story, and every landscape inspires a sonnet.
                     Our adventure begins in the bustling streets of London, where the grandeur of history meets the vibrancy of modern life.
@@ -86,7 +78,7 @@ def populate():
         {
             'PostID': 2,
             'UserID_id': 2, 
-            'Picture': 'Screenshot_2024-03-02_at_17.27.57.png', 
+            'Picture': 'https://images.pexels.com/photos/3061171/pexels-photo-3061171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
             'Title': 'Discovering Scotland: A Land of History, Mystery, and Natural Beauty', 
             'Text': """Journey into the heart of Scotland, where the echoes of ancient battles mingle with the peaceful solitude of vast, unspoiled landscapes. 
                     Our exploration begins in the historic alleyways of Edinburgh, under the watchful eye of Edinburgh Castle, perched atop its volcanic throne. 
@@ -103,8 +95,8 @@ def populate():
         {
             'PostID': 3, 
             'UserID_id': 1, 
-            'Picture': 'Screenshot_2024-03-17_at_20.22.35.png', 
-            'Title': 'testing', 
+            'Picture': 'https://images.pexels.com/photos/2707070/pexels-photo-2707070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
+            'Title': 'The Heart of Mexico: A Tapestry of Culture, Cuisine, and Natural Wonders', 
             'Text': """Dive deep into the heart of Mexico, a country where every corner tells a story of history, resilience, and vibrant culture. 
                     Our journey begins in the bustling streets of Mexico City, home to ancient ruins and modern murals that speak volumes of the nation's past and present.
                     As we explore further, the culinary landscapes unfold with the rich flavors of traditional dishes like tacos al pastor, mole, and chiles en nogada, 
@@ -123,7 +115,7 @@ def populate():
         {
             'PostID': 4,
             'UserID_id': 2,
-            'Picture': 'Screenshot_2024-03-18_at_15.17.31.png',
+            'Picture': 'https://images.pexels.com/photos/161815/santorini-oia-greece-water-161815.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'Title': 'Greece: A Voyage to the Cradle of Civilization and Beyond',
             'Text': """ Embark on an epic journey to Greece, where ancient ruins whisper tales of democracy, philosophy, and heroism under the azure skies. 
                     Our adventure begins amidst the hallowed halls of the Acropolis in Athens, where the Parthenon stands as a beacon of ancient glory and 
@@ -144,7 +136,7 @@ def populate():
         {
             'PostID': 5,
             'UserID_id': 1,
-            'Picture': '', 
+            'Picture': 'https://images.pexels.com/photos/2363/france-landmark-lights-night.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
             'Title': 'A Journey Through France: From Lavish Artistry to Rustic Vineyards',
             'Text': """Embark on an enchanting journey through France, a country synonymous with elegance, gastronomy, and unparalleled art. 
                     Our voyage begins in the luminous streets of Paris, the City of Lights, where the majestic Eiffel Tower and the sprawling 
@@ -165,7 +157,7 @@ def populate():
         {
             'PostID': 6,
             'UserID_id': 2,
-            'Picture': '',
+            'Picture': 'https://images.pexels.com/photos/777059/pexels-photo-777059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'Title': 'Singapore: A Fusion of Cultures, Gastronomy, and Futuristic Visions',
             'Text': """Embark on a journey to Singapore, a small island city-state that stands as a testament to extraordinary innovation and cultural amalgamation. 
                     Our exploration begins amidst the futuristic landscapes of Marina Bay, where architectural marvels meet green technology, epitomizing Singapore's 
@@ -185,7 +177,7 @@ def populate():
         {
             'PostID': 7,
             'UserID_id': 1,
-            'Picture': '',
+            'Picture': 'https://images.pexels.com/photos/995764/pexels-photo-995764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'Title': 'Australia: A Vast Land of Breathtaking Contrasts, From Red Deserts to Lush Rainforests',
             'Text': """Embark on an epic journey across Australia, a continent that defies imagination with its diverse landscapes and rich cultural heritage. 
                     Our adventure spans from the iconic red sands of the Outback, where Uluru stands as a sacred monument, to the vibrant coral ecosystems of the Great Barrier Reef, 
@@ -201,7 +193,6 @@ def populate():
                 {'TagID': 3, 'TagName': 'Adventure'},
             ]
         }
->>>>>>> e7ec58a (Added example posts)
         # Add more posts as needed
     ]
 
