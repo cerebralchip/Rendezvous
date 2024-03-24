@@ -32,7 +32,7 @@
                 <p class="card-text post_detail" >{{ post.Text }}</p>
                 {% if post.Picture %}
                     <div class="image-container">
-                        <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="img-fluid post-image">
+                        <img src="{{ post.Picture.url }}" alt="{{ post.Text }}" class="post-image">
                     </div>
                 {% endif %}
             </div>
@@ -46,7 +46,7 @@
                 {% for comment in post.comments.all %}
                     <li class="list-group-item comment-item">
                         <p class="comment-content">{{ comment.Content }}</p>
-                        <p class="comment-author"><strong>By:</strong> {{ comment.UserID.username }}</p>
+                        <p class="comment-author"><strong>By:</strong> <a href="/accounts/{{ comment.UserID. }}">{{ comment.UserID.username }}</a></p>
                         <p class="comment-votes">
                             Upvotes: <a href="{% url 'upvote_comment' comment_id=comment.CommentID %}" class="btn btn-sm btn-outline-primary">{{ comment.Upvotes }}</a> |
                             Downvotes: <a href="{% url 'downvote_comment' comment_id=comment.CommentID %}" class="btn btn-sm btn-outline-danger">{{ comment.Downvotes }}</a>

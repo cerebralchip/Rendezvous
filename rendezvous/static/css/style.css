@@ -509,11 +509,16 @@ main.flex-shrink-0 {
 .image-container {
   text-align: center;
   margin-bottom: 1rem;
+  /* do not exceed dimensions of parent div */
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .post-image {
-  max-width: 100%;
-  height: auto;
+  height: 80%;
+  width:80%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .post-content {
