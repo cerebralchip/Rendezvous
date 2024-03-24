@@ -24,7 +24,8 @@
                     <input type="hidden" name="query" value="{{ tag.TagName }}">
                     <button type="submit" class="badge bg-secondary">{{ tag.TagName }}</button>
                 </form>
-                {% if not forloop.last %}, {% endif %}
+                {% if not forloop.last %}
+                {% endif %}
                 {% endfor %}
             </p>
             

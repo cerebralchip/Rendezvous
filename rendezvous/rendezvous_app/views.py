@@ -28,6 +28,11 @@ def create_post(request):
             post.UserID = request.user
             post.save()  # Save the post to generate the PostID
             
+            # Get the tags from the multiple choice field
+            tags = form.cleaned_data['Tags']
+            for tag in tags:
+                post.Tags.add(tag)
+
             new_tags = form.cleaned_data.get('new_tags', '').split(',')
             for tag_name in new_tags:
                 tag_name = tag_name.strip()
