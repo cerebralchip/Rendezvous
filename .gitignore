@@ -1,3 +1,6 @@
+# secret key
+secret.key
+
 # Virtual environment
 env/
 venv/
