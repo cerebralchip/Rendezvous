@@ -37,8 +37,8 @@ def create_post(request):
             # Add the post country to user.countries_visited if country donest already exist
             user = request.user
             country = post.CountryID
-            if country not in user.profile.countries_visited.all():
-                user.profile.countries_visited.add(country)
+            if country not in user.profile.CountriesVisited.all():
+                user.profile.CountriesVisited.add(country)
 
             return redirect('post_detail', post_id=post.PostID)
     else:
@@ -87,15 +87,14 @@ def resources(request, country):
     return render(request, 'rendezvous/resources.html', {'country': country, 'guides_and_tips': guides_and_tips, 'eats': eats, 'stays': stays, 'language': language, 'active_page': 'resources'})
 
 def profile(request, user_id=None):
-    if user_id is not None:
-        user = get_object_or_404(User, pk=user_id)
+    if user_id:
+        user = get_object_or_404(User, id=user_id)
     else:
         user = request.user
-    profile = get_object_or_404(Profile, user=user)
-    return render(request, 'profile.html', {'profile': profile})
+    return render(request, 'rendezvous/profile.html', {'user': user})
 
 def current_user_profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'rendezvous/profile.html')
 
 # Define the settings view
 def settings(request):
@@ -173,11 +172,6 @@ def search(request):
         posts = posts | Post.objects.filter(Title__icontains=query) | Post.objects.filter(Text__icontains=query)
         
     return render(request, 'rendezvous/search_results.html', {'posts': posts, 'query': query})
-
-# Define the search_results view
-def search_results(request):
-    # Add your logic here
-    return render(request, 'rendezvous/search_results.html')
 
 def comment(request, post_id):
     post = get_object_or_404(Post, PostID=post_id)

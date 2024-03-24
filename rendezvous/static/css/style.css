@@ -257,7 +257,7 @@ body {
   font-size: 4rem;
   z-index: 1050;
   border: none;
-  background-color: #333333;
+  background-color: #cdb4db;
   color: white;
   display: flex;
   align-items: center;
@@ -300,7 +300,7 @@ body {
 }
 
 .sticky-button:hover {
-  background-color: #3333339a;
+  background-color: #cdb4db9c;
   transform: scale(1.1);
 }
 
@@ -437,7 +437,7 @@ main.flex-shrink-0 {
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: #333;
+  background-color: #33333300;
   color: white;
   padding: 16px;
   font-size: 16px;

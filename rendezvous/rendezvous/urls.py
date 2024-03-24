@@ -34,8 +34,8 @@ urlpatterns = [
     path("discover/", views.discover, name="discover"),
     path("resources/<str:country>", views.resources, name="resources"),
 
+    path('profile/', views.current_user_profile, name='profile'),
     path('accounts/<int:user_id>/', views.profile, name='profile_with_id'),
-    path('accounts/profile/', views.current_user_profile, name='profile'),
 
     path("settings/", views.settings, name="settings"),
     path("about/", views.about, name="about"),
@@ -48,7 +48,7 @@ urlpatterns = [
 
     path("country/", views.country, name="country"),
     path("search/", views.search, name="search"),
-    path("search_results/", views.search_results, name="search_results"),
+
 
     path("comment/", views.comment, name="comment"),
     path('post/<int:post_id>/comment/', views.comment, name='comment'),

@@ -12,8 +12,10 @@
         <h2>Countries Visited</h2>
         <!-- List of countries visited -->
         <ul>
-        {% for country in user.profile.countries_visited.all %}
-            <li>{{ country.CountryName }}</li>
+        {% for country in user.profile.CountriesVisited.all %}
+            <li>
+                <a href="/resources/{{ country.CountryName }}">{{ country.CountryName }}</a>
+            </li>
         {% empty %}
             <li>No countries visited yet.</li>
         {% endfor %}

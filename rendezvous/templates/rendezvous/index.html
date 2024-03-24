@@ -71,8 +71,10 @@
             class="explore-category"
             id="eco-travel"
             style="
+              cursor: pointer;
               background-image: url('https://images.pexels.com/photos/6271612/pexels-photo-6271612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             "
+            onclick="explore_cards_search('eco-travel')"
           >
             <div class="explore-text">Eco-Travel</div>
           </div>
@@ -82,8 +84,10 @@
             class="explore-category"
             id="budget"
             style="
+              cursor: pointer;
               background-image: url('https://images.pexels.com/photos/17302406/pexels-photo-17302406/free-photo-of-palm-tree-in-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             "
+            onclick="explore_cards_search('budget')"
           >
             <div class="explore-text">Budget</div>
           </div>
@@ -93,8 +97,10 @@
             class="explore-category"
             id="luxury"
             style="
+              cursor: pointer;
               background-image: url('https://images.pexels.com/photos/2373201/pexels-photo-2373201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             "
+            onclick="explore_cards_search('luxury')"
           >
             <div class="explore-text">Luxury</div>
           </div>
@@ -104,8 +110,10 @@
             class="explore-category"
             id="city"
             style="
+              cursor: pointer;
               background-image: url('https://images.pexels.com/photos/17146815/pexels-photo-17146815/free-photo-of-brooklyn-bridge-and-new-york-skyscrapers-behind-in-evening.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             "
+            onclick="explore_cards_search('city')"
           >
             <div class="explore-text">City</div>
           </div>
@@ -115,8 +123,10 @@
             class="explore-category"
             id="adventure"
             style="
+              cursor: pointer;
               background-image: url('https://images.pexels.com/photos/1374064/pexels-photo-1374064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             "
+            onclick="explore_cards_search('adventure')"
           >
             <div class="explore-text">Adventure</div>
           </div>
@@ -130,4 +140,5 @@
 <script src="{% static 'js/featured_posts_carousel.js' %}"></script>
 <script src="{% static 'js/index_recent_posts.js' %}"></script>
 <script src="{% static 'js/map.js' %}"></script>
+<script src="{% static 'js/explore_categories.js' %}"></script>
 {% endblock %}
