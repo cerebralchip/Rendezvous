@@ -6,12 +6,20 @@ from .models import Country, Profile, Post, Tag, Comment
 # Unregister the original User admin
 admin.site.unregister(User)
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('get_username', 'BornInCountryID', 'LivingInCountryID')
+
+    def get_username(self, obj):
+        return obj.user.username
+    get_username.short_description = 'Username'
+
+admin.site.register(Profile, ProfileAdmin)
 
 class CountryAdmin(admin.ModelAdmin):
     list_display = ('CountryID', 'CountryName')
 
 class UserAdmin(DefaultUserAdmin):
-    list_display = ('user', 'BornInCountryID', 'LivingInCountryID')
+    list_display = ('username', 'email', 'is_staff', 'is_active')
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('PostID', 'Text', 'CountryID', 'published_date')
@@ -29,4 +37,4 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Comment, CommentAdmin)
-admin.site.register(Profile)
+admin.site.register(User, UserAdmin)

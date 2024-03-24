@@ -20,7 +20,7 @@ class Profile(models.Model):
     CountriesVisited = models.ManyToManyField(Country, related_name='countries_visited')
 
     def __str__(self):
-        return self.Username
+        return self.user.username
 
 class Tag(models.Model):
     TagID = models.AutoField(primary_key=True)
