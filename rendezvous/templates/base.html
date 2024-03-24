@@ -26,7 +26,11 @@
                     <li class="nav-item">
                         <div class="dropdown">
                             <button class="dropbtn">
-                                <i class="bi bi-person-circle" style="font-size: 1.5rem"></i>
+                            {% if user.profile.Picture %}
+                                <img class="nav-profile-image" src="/media/{{ user.profile.Picture }}" alt="Profile Picture">
+                            {% else %}
+                                <img class="nav-profile-image" src="{% static 'images/default_profile.jpg' %}" alt="Profile Picture">
+                            {% endif %}
                             </button>
                             <div class="dropdown-content">
                                 {% if user.is_authenticated %}

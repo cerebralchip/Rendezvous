@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from django.core import serializers
 
@@ -114,6 +115,8 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('index')
+        else:
+            messages.error(request, 'Invalid username or password.')    
     else:
         form = AuthenticationForm()
     return render(request, 'rendezvous/login.html', {'form': form, 'active_page': 'login'})
@@ -144,7 +147,7 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
-    return render(request, 'rendezvous/register.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'rendezvous/register.html', {'user_form': user_form, 'profile_form': profile_form , 'registered': registered, 'active_page': 'register'})
 
 # Define the country view
 def country(request):

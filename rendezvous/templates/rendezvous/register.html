@@ -1,47 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container login-container my-5">
-    <h2 class="text-center mb-4">Register</h2>
-    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+<div class="container">
+    <h2>Register</h2>
+    {% if registered %}
+    <div class="alert alert-success" role="alert">
+        Congratulations! You have registered successfully!
+    </div>
+    {% else %}
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h3>User Details</h3>
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Username">
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-        </div>
-
-        <h3>Profile Details</h3>
-        <div class="mb-3">
-            <label for="bio" class="form-label">Bio</label>
-            <textarea class="form-control" id="bio" placeholder="Tell us about yourself"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="bornInCountryID" class="form-label">Country of Birth</label>
-            <select class="form-control" id="bornInCountryID">
-                <option value="">Select a country</option>
-                <option value="country1">Country 1</option>
-                <option value="country2">Country 2</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="livingInCountryID" class="form-label">Country of Residence</label>
-            <select class="form-control" id="livingInCountryID">
-                <option value="">Select a country</option>
-                <option value="country1">Country 1</option>
-                <option value="country2">Country 2</option>
-            </select>
-        </div>
-
+        <fieldset class="form-group">
+            <legend>User Information</legend>
+            {{ user_form.as_p }}
+        </fieldset>
+        <fieldset class="form-group">
+            <legend>Profile Information</legend>
+            {{ profile_form.as_p }}
+        </fieldset>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
+    {% endif %}
 </div>
 {% endblock %}

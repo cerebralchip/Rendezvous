@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 class PostForm(forms.ModelForm):
     new_tags = forms.CharField(label='New Tags', required=False, help_text='Enter comma-separated tags')
+    
+
+    Tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False, help_text='Hold down "Control", or "Command" on a Mac, to select multiple tags.')
 
     class Meta:
         model = Post

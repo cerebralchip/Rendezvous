@@ -524,3 +524,13 @@ main.flex-shrink-0 {
   /* text colour black */
   color: #000;
 }
+
+.nav-profile-image {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}

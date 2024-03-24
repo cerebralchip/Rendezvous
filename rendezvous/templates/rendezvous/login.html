@@ -21,6 +21,13 @@
                       <label for="id_password" class="form-label">Password</label>
                       <input type="password" name="password" class="form-control" id="id_password" required>
                   </div>
+                  {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
                   <button type="submit" class="btn btn-primary w-100">Log In</button>
               </form>
           </div>
