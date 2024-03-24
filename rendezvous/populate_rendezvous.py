@@ -174,7 +174,6 @@ def populate():
             {'TagName': 'guides and tips'}, 
             ]
         }
-        # Add more posts as needed
     ]
 
     for post_data in posts:

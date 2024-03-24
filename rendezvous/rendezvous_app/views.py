@@ -57,12 +57,10 @@ def post_detail(request, post_id):
 
 # Define the map view
 def map(request):
-    # Add your logic here
     return render(request, 'rendezvous/map.html')
 
 # Define the discover view
 def discover(request):
-    # Add your logic here
     return render(request, 'rendezvous/discover.html', {'active_page': 'discover'})
 
 # Define the resources view
@@ -104,12 +102,10 @@ def current_user_profile(request):
 
 # Define the settings view
 def settings(request):
-    # Add your logic here
     return render(request, 'rendezvous/settings.html')
 
 # Define the about view
 def about(request):
-    # Add your logic here
     return render(request, 'rendezvous/about.html', {'active_page': 'about'})
 
 # define login view
@@ -156,7 +152,6 @@ def register(request):
 
 # Define the country view
 def country(request):
-    # Add your logic here
     return render(request, 'rendezvous/country.html')
 
 # Define the search view

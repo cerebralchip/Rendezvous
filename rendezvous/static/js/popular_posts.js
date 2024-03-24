@@ -1,12 +1,12 @@
 $(document).ready(function() {
     $.ajax({
-        url: '/api/popular-posts/', // Adjust this URL to the one you've set up for popular posts
+        url: '/api/popular-posts/',
         dataType: 'json',
         success: function(data) {
             data.forEach(function(post) {
                 var fields = post.fields;
                 // Construct the URL for the post image
-                var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg'; // Adjust with your default image path
+                var pictureUrl = fields.Picture ? '/media/' + fields.Picture : '/media/default_pic.jpeg';
                 // Format the published date in a more readable format if necessary
                 var publishedDate = new Date(fields.published_date).toLocaleDateString("en-GB", {
                     year: 'numeric', month: 'long', day: 'numeric'

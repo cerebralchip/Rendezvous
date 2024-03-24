@@ -44,7 +44,7 @@ textarea {
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box; /* So padding doesn't affect width */
+    box-sizing: border-box;
 }
 
 /* Target only the file input */
