@@ -22,7 +22,7 @@ class UserAdmin(DefaultUserAdmin):
     list_display = ('username', 'email', 'is_staff', 'is_active')
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('PostID', 'Text', 'CountryID', 'published_date')
+    list_display = ('PostID', 'Text', 'CountryID', 'published_date', 'is_featured', 'Upvotes', 'Downvotes')
     list_filter = ('is_featured', 'published_date', 'CountryID')
     search_fields = ('Text',)
 
@@ -30,7 +30,7 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('TagID', 'TagName')
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('CommentID', 'Content', 'UserID', 'PostID')
+    list_display = ('CommentID', 'Content', 'UserID', 'PostID', 'Upvotes', 'Downvotes')
     search_fields = ('Content',)
 
 admin.site.register(Country, CountryAdmin)
