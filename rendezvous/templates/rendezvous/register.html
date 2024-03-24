@@ -1,75 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<main class="flex-shrink-0"></main>
-  <div class="container-fluid login-container">
-    <h2>Register</h2>
-    <form method="post" enctype="multipart/form-data">
-      
-      {% csrf_token %}
+<div class="container login-container my-5">
+    <h2 class="text-center mb-4">Register</h2>
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <h3>User Details</h3>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
 
-      <h3>User Details</h3>
-      <!-- <div class="row justify-content-center"> -->
-      <div class="col-sm-10 col-md-8 col-lg-6">
-      <div class="mb-3">
-        <label for="{{ user_form.username.id_for_label }}">{{ user_form.username.label }}</label>
-        {{ user_form.username }}
-      </div>
-      <div class="mb-3">
-        <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
-        {{ user_form.email }}
-      </div>
-      <div class="mb-3">
-        <label for="{{ user_form.password.id_for_label }}">{{ user_form.password.label }}</label>
-        {{ user_form.password }}
-        {% if user_form.password.errors %}
-          <ul class="errorlist">
-            {% for error in user_form.password.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      </div>
-      <!-- </div> -->
+        <h3>Profile Details</h3>
+        <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            <textarea class="form-control" id="bio" placeholder="Tell us about yourself"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="bornInCountryID" class="form-label">Country of Birth</label>
+            <select class="form-control" id="bornInCountryID">
+                <option value="">Select a country</option>
+                <option value="country1">Country 1</option>
+                <option value="country2">Country 2</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="livingInCountryID" class="form-label">Country of Residence</label>
+            <select class="form-control" id="livingInCountryID">
+                <option value="">Select a country</option>
+                <option value="country1">Country 1</option>
+                <option value="country2">Country 2</option>
+            </select>
+        </div>
 
-      <h3>Profile Details</h3>
-      <div class="mb-3">
-        <label for="{{ profile_form.Bio.id_for_label }}">Bio</label>
-        {{ profile_form.Bio }}
-        {% if profile_form.Bio.errors %}
-          <ul class="errorlist">
-            {% for error in profile_form.Bio.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="mb-3">
-        <label for="{{ profile_form.BornInCountryID.id_for_label }}">Where were you born?</label>
-        {{ profile_form.BornInCountryID }}
-        {% if profile_form.BornInCountryID.errors %}
-          <ul class="errorlist">
-            {% for error in profile_form.BornInCountryID.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="mb-3">
-        <label for="{{ profile_form.LivingInCountryID.id_for_label }}">Which country do you live in now?</label>
-        {{ profile_form.LivingInCountryID }}
-        {% if profile_form.LivingInCountryID.errors %}
-          <ul class="errorlist">
-            {% for error in profile_form.LivingInCountryID.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-
-      <button type="submit" class="btn btn-primary w-100">Register</button>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
-  </div>
-</main>
+</div>
 {% endblock %}
