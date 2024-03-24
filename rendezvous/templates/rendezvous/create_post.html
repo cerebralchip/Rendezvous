@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Create Post{% endblock %}
+{% block additionalCSS %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/create_post.css' %}">
+{% endblock %}
 
 <!-- block content -->
 {% block content %}
+<div class="container">
     <h1>Create New Post</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create Post</button>
     </form>
+</div>
 {% endblock %}

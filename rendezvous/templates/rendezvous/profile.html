@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
+{% block additionalCSS %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+
 {% block content %}
+<div class="container">
     <section id="user-info">
         <h1>Hi, {{ user.username }}</h1>
         <!-- User information goes here -->
@@ -39,4 +46,5 @@
         {% endfor %}
         </ul>
     </section>
+</div>
 {% endblock %}

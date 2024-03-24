@@ -1,0 +1,101 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+.container {
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* User info section */
+#user-info h1 {
+    /* Canter and pad, and place on a slightly darker background */
+    color: #333;
+    background: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+
+}
+
+#user-info p {
+    color: #666;
+    margin: 10px 0;
+}
+
+/* Countries visited section */
+#countries-visited {
+    margin-top: 20px;
+}
+
+#countries-visited h2 {
+    color: #333;
+}
+
+#countries-visited ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#countries-visited li {
+    background: #e2e2e2;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#countries-visited li a {
+    text-decoration: none;
+    color: darkred;
+}
+
+/* Latest posts section */
+#latest-posts {
+    margin-top: 20px;
+}
+
+#latest-posts h2 {
+    color: #333;
+}
+
+#latest-posts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#latest-posts li {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#latest-posts h3 {
+    margin-top: 0;
+}
+
+#latest-posts a {
+    text-decoration: none;
+    color: #333;
+}
+
+#latest-posts p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Make links stand out */
+a {
+    color: #0088cc;
+}
+
+a:hover {
+    text-decoration: underline;
+}

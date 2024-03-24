@@ -23,7 +23,10 @@ $(document).ready(function() {
                                 '<hr class="card-inside-separator">' +
                                 '<p class="card-meta">' +
                                     '<small>'+ fields.username +'</small><br />' +
-                                    '<small>' + publishedDate + '</small>' +
+                                    '<small>' + publishedDate + '</small><br />' +
+                                    // Show fields.Upvotes and fields.Downvotes but formatted nicely
+                                    '<small>Upvotes: ' + fields.Upvotes + '</small>' + ' | ' +
+                                    '<small>Downvotes: ' + fields.Downvotes + '</small>' +
                                 '</p>' +
                             '</div>' +
                         '</a>' +
